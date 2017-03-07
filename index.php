@@ -1,0 +1,12 @@
+<?php 
+	define( 'BASE_URL', 'http://mvc.local/MVC_Exercise' );
+	define( 'BASE_PATH', dirname(__FILE__) );
+	define( 'PATH_ASSETS', BASE_PATH . '/assets' );
+	define( 'PATH_SYSTEM', BASE_PATH . '/system' );
+	define( 'PATH_ADMIN', BASE_PATH . '/admin' );
+
+	require( PATH_SYSTEM . '/config/config.php' );
+	include_once( PATH_SYSTEM . '/core/FT_Common.php' ); 
+
+	FT_Load();
+?>
