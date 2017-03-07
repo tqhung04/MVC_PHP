@@ -1,5 +1,5 @@
 <?php 
-	define( 'BASE_URL', 'http://mvc.local/MVC_Exercise' );
+	define( 'BASE_URL', 'http://mvc.local' );
 	define( 'BASE_PATH', dirname(__FILE__) );
 	define( 'PATH_ASSETS', BASE_PATH . '/assets' );
 	define( 'PATH_SYSTEM', BASE_PATH . '/system' );

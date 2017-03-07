@@ -1,3 +1,8 @@
+<?php 
+    if( !isset($_SESSION) ) { 
+        session_start(); 
+    } 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>        
@@ -22,15 +27,26 @@
             </div>
             <div class="control-group">
                 <label for="inputPassword">Password</label>                
-                <input type="password" id="inputPassword" name="inputPassword" />                
+                <input type="password" id="inputPassword" name="inputPassword" />
             </div>
-            <div class="control-group" style="margin-bottom: 5px;">                
-                <label class="checkbox"><input type="checkbox"> Remember me</label>                                                
+            <div class="control-group" style="margin-bottom: 5px;">
+                <label class="checkbox">
+                    <input type="hidden" name="cbRemember" value="0" />
+                    <input type="checkbox" name="cbRemember" id="cbRemember" value="1"> Remember me
+                </label>                                                
             </div>
             <div class="form-actions">
                 <button type="submit" class="btn btn-block" name="btnLogin">Sign in</button>
             </div>
-        </form>        
+
+            <p style="color: red; font-style: italic; text-align: center;">
+                <?php
+                    if ( !empty($_SESSION['errMsg']) ) {
+                        echo $_SESSION['errMsg'];
+                    }
+                ?>    
+            </p>  
+        </form>  
         
     </div>    
     

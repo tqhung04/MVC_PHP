@@ -1,4 +1,7 @@
 <?php
+if( !isset($_SESSION) ) { 
+    session_start(); 
+} 
 
 function FT_Load () {
 
@@ -11,7 +14,7 @@ function FT_Load () {
 	if ( isset($_GET['p']) && $_GET['p'] == 'admin' ) {
 		
 		// Check Login
-		if ( empty($_COOKIE['username']) ) {
+		if ( empty($_COOKIE['username']) && empty($_SESSION['username'])) {
 			$controller = $admin_config['login_controller'];
 		} else {
 			include PATH_ADMIN . '/views/Template/header.php';
