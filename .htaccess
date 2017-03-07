@@ -1,0 +1,11 @@
+RewriteEngine on
+
+#Options All -Indexes
+
+<Files .htaccess>
+
+Order Allow,Deny
+
+Deny from all
+
+</Files>
