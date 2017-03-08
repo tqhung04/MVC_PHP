@@ -27,9 +27,10 @@ class Product extends FT_Model {
 
 	public function addProduct ($name, $price, $description, $image, $categories_id) {
 		try {
-			$stmt = parent::connect()->prepare('INSERT INTO 
-												products (name, price, description, image, categories_id) 
-												VALUES (:name, :price, :description, :image, :categories_id)');
+			$stmt = parent::connect()->prepare('
+				INSERT INTO 
+				products (name, price, description, image, categories_id) 
+				VALUES (:name, :price, :description, :image, :categories_id)');
 			$stmt->execute(array(
 				':name' => $name,
 				':price' => $price,

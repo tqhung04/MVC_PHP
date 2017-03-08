@@ -55,23 +55,15 @@ class ProductController extends FT_Controller {
 						// Check description
 						$productDescription = empty( $_POST['productDescription'] ) ? '' : $_POST['productDescription'];
 
-						echo $productName, $productPrice, $productDescription, $productImg, $productCategory;
-
-						Product::addProduct($productName, $productPrice, $productDescription, $productImg, $productCategory);
+						// echo $productName, $productPrice, $productDescription, $productImg, $productCategory;
+						$productCategoryId = Category::getIdByName($productCategory);
+						Product::addProduct($productName, $productPrice, $productDescription, $productImg, $productCategoryId);
 					}
 				}
 				
 			} else {
 				$_SESSION['errMsg'] = "Name, Price and Category are required.";
 			}
-
-
-			// $productPrice = $_POST['productPrice'];
-			// $productDescription = $_POST['productDescription'];
-			// $productCategory = $_POST['productCategory'];
-
-			
-			// echo $productName . $productPrice . $productDescription . $productCategory;
 		}
 
 		include PATH_ADMIN . '/views/Products/add.php';
