@@ -39,7 +39,7 @@
                 <button type="submit" class="btn btn-block" name="btnLogin">Sign in</button>
             </div>
 
-            <p style="color: red; font-style: italic; text-align: center;">
+            <p class="error">
                 <?php
                     if ( !empty($_SESSION['errMsg']) ) {
                         echo $_SESSION['errMsg'];

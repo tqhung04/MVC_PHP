@@ -13,12 +13,14 @@ class LoginController extends FT_Controller {
 
 	function login () {
 		if ( isset($_POST['btnLogin']) ) {
-			if ( isset($_POST['inputUsername']) && isset($_POST['inputPassword']) ) {
+			if ( !empty($_POST['inputUsername']) && !empty($_POST['inputPassword']) ) {
 				$username = $_POST['inputUsername'];
 				$password = $_POST['inputPassword'];
 
 				$check = User::login($username, $password);
 				if ( $check == 1 ) {
+					$_SESSION['errMsg'] = '';
+
 					if( $_POST["cbRemember"] == 1 ) {
 						setcookie('username', $username, time() + (86400 * 30), "/");
 						setcookie('password', $password, time() + (86400 * 30), "/");

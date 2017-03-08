@@ -31,6 +31,7 @@ function FT_Load () {
 		}
 		
 		include_once PATH_SYSTEM . '/core/FT_Controller.php';
+		include_once PATH_SYSTEM . '/core/FT_Model.php';
 		require_once PATH_ADMIN . '/controllers/' . $controller . '.php';
 
 		// Check Class
