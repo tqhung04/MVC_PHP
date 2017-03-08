@@ -46,6 +46,22 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <?php
+                            foreach ($data as $key => $value) {
+                        ?>
+                            <tr>
+                                <td><input type="checkbox" name="checkbox"/></td>
+                                <td>1</td>
+                                <td><?php echo $value['name'] ?></td>
+                                <td><?php echo $value['price'] ?></td>
+                                <td><span class="text-success">Activated</span></td>
+                                <td><?php echo $value['created_at'] ?></td>
+                                <td><?php echo $value['updated_at'] ?></td>
+                                <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
+                            </tr>
+                        <?php
+                            }
+                        ?>
                         <tr>
                             <td><input type="checkbox" name="checkbox"/></td>
                             <td>1</td>
@@ -56,96 +72,7 @@
                             <td>15:00 05/10/2014</td>
                             <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
                         </tr>
-                        <tr>
-                            <td><input type="checkbox" name="checkbox"/></td>
-                            <td>2</td>
-                            <td>Product 2</td>
-                            <td>100.000 VND</td>
-                            <td><span class="text-success">Activated</span></td>
-                            <td>15:00 05/10/2014</td>
-                            <td>15:00 05/10/2014</td>
-                            <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="checkbox"/></td>
-                            <td>3</td>
-                            <td>Product 3</td>
-                            <td>100.000 VND</td>
-                            <td><span class="text-success">Activated</span></td>
-                            <td>15:00 05/10/2014</td>
-                            <td>15:00 05/10/2014</td>
-                            <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="checkbox"/></td>
-                            <td>4</td>
-                            <td>Product 4</td>
-                            <td>100.000 VND</td>
-                            <td><span class="text-success">Activated</span></td>
-                            <td>15:00 05/10/2014</td>
-                            <td>15:00 05/10/2014</td>
-                            <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="checkbox"/></td>
-                            <td>5</td>
-                            <td>Product 6</td>
-                            <td>100.000 VND</td>
-                            <td><span class="text-error">Deactivate</span></td>
-                            <td>15:00 05/10/2014</td>
-                            <td>15:00 05/10/2014</td>
-                            <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="checkbox"/></td>
-                            <td>6</td>
-                            <td>Product 6</td>
-                            <td>100.000 VND</td>
-                            <td><span class="text-success">Activated</span></td>
-                            <td>15:00 05/10/2014</td>
-                            <td>15:00 05/10/2014</td>
-                            <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="checkbox"/></td>
-                            <td>7</td>
-                            <td>Product 7</td>
-                            <td>100.000 VND</td>
-                            <td><span class="text-error">Deactivate</span></td>
-                            <td>15:00 05/10/2014</td>
-                            <td>15:00 05/10/2014</td>
-                            <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="checkbox"/></td>
-                            <td>8</td>
-                            <td>Product 8</td>
-                            <td>100.000 VND</td>
-                            <td><span class="text-success">Activated</span></td>
-                            <td>15:00 05/10/2014</td>
-                            <td>15:00 05/10/2014</td>
-                            <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="checkbox"/></td>
-                            <td>9</td>
-                            <td>Product 9</td>
-                            <td>100.000 VND</td>
-                            <td><span class="text-error">Deactivate</span></td>
-                            <td>15:00 05/10/2014</td>
-                            <td>15:00 05/10/2014</td>
-                            <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="checkbox"/></td>
-                            <td>10</td>
-                            <td>Product 10</td>
-                            <td>100.000 VND</td>
-                            <td><span class="text-success">Activated</span></td>
-                            <td>15:00 05/10/2014</td>
-                            <td>15:00 05/10/2014</td>
-                            <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
-                        </tr>
+
                         </tbody>
                     </table>
                     <div class="bulk-action">
