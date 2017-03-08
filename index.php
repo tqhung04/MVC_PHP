@@ -10,3 +10,12 @@
 
 	FT_Load();
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Index</title>
+</head>
+<body>
+	<a href="http://mvc.local?p=admin">Go to Admin</a>
+</body>
+</html>
