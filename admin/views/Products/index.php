@@ -59,7 +59,7 @@
                                 <td><img alt="<?php echo $value['name']; ?>" src="<?php echo BASE_URL . $value['image']; ?>" style="width: 100%; height: 100px"></td>
                                 <td><?php echo $value['created_at'] ?></td>
                                 <td><?php echo $value['updated_at'] ?></td>
-                                <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
+                                <td><a href="<?php echo BASE_URL . '?p=admin&c=product&a=edit&id=' . $value['id']; ?>" class="btn btn-info">Edit</a></td>
                             </tr>
                         <?php
                             }

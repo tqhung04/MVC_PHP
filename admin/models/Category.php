@@ -25,4 +25,18 @@ class Category extends FT_Model {
 		}
 	}
 
+	public function getNameById ($id) {
+		$stmt = parent::connect()->prepare('SELECT name FROM categories WHERE id = :categoryId');
+		$stmt->execute(array(
+			':categoryId' => (int) $id
+		));
+		$data = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		if ($stmt->rowCount() > 0) {
+			return $data['name'];
+		} else {
+			return false;
+		}
+	}
+
 }

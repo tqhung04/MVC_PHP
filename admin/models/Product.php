@@ -11,12 +11,21 @@ class Product extends FT_Model {
 		$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		return $data;
 	}
-	
+
+	public function getProduct ($id) {
+		$stmt = parent::connect()->prepare('SELECT * FROM products WHERE id = :id');
+		$stmt->execute(array(
+			':id' => $id
+			));
+		return $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+	}
+
 	public function checkExistProductName ($name) {
 		$stmt = parent::connect()->prepare('SELECT * FROM products WHERE name = :name');
 		$stmt->execute(array(
 			':name' => $name
-		));
+			));
 		$data = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($stmt->rowCount() > 0) {
 			return true;
@@ -37,11 +46,33 @@ class Product extends FT_Model {
 				':description' => $description,
 				':image' => $image,
 				':categories_id' => $categories_id,
-			));
+				));
 		} catch (Exception $e) {
 			echo "<br>" . $e->getMessage();
 		}
-		
+	}
+
+	public function updateProduct ($id, $name, $price, $description, $image, $categories_id) {
+		try {
+			$stmt = parent::connect()->prepare('
+				UPDATE products 
+				SET name=:name, price=:price, description=:description, image=:image, categories_id=:categories_id
+				WHERE id=:id');
+				
+			$stmt->execute(array(
+				':name' => $name,
+				':price' => $price,
+				':description' => $description,
+				':image' => $image,
+				':categories_id' => $categories_id,
+				':id' => $id
+				));
+
+			return true;
+		} catch (Exception $e) {
+			echo "<br>" . $e->getMessage();
+			return false;
+		}
 	}
 
 }
