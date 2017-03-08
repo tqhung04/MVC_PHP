@@ -39,6 +39,7 @@
                             <th width="10%" class="sorting"><a href="#">ID</a></th>
                             <th width="30%" class="sorting"><a href="#">Product Name</a></th>
                             <th width="15%" class="sorting"><a href="#">Price</a></th>
+                            <th width="15%" class="sorting"><a href="#">Description</a></th>
                             <th width="15%" class="sorting"><a href="#">Image</a></th>
                             <th width="10%" class="sorting"><a href="#">Time Created</a></th>
                             <th width="10%" class="sorting"><a href="#">Time Updated</a></th>
@@ -56,6 +57,7 @@
                                 <td><?php echo $c ?></td>
                                 <td><?php echo $value['name'] ?></td>
                                 <td><?php echo $value['price'] ?></td>
+                                <td><?php echo $value['description'] ?></td>
                                 <td><img alt="<?php echo $value['name']; ?>" src="<?php echo BASE_URL . $value['image']; ?>" style="width: 100%; height: 100px"></td>
                                 <td><?php echo $value['created_at'] ?></td>
                                 <td><?php echo $value['updated_at'] ?></td>

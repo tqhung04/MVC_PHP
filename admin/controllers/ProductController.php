@@ -53,7 +53,7 @@ class ProductController extends FT_Controller {
 							}
 
 							// Check description
-							$productDescription = empty( $_POST['productDescription'] ) ? '' : $_POST['productDescription'];
+							$productDescription = empty( $_POST['productDescription'] ) ? $data['description'] : $_POST['productDescription'];
 
 							$productCategoryId = Category::getIdByName($productCategory);
 

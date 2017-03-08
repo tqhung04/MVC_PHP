@@ -35,7 +35,7 @@
                         </div> 
                     	<div class="row-form">
                             <div class="span3">Description:</div>
-                            <div class="span9"><textarea value="<?php echo $data['description']; ?>" name="productDescription"/></textarea></div>
+                            <div class="span9"><textarea name="productDescription"/><?php echo $data['description']; ?></textarea></div>
                             <div class="clear"></div>
                         </div> 
                     	<div class="row-form">
