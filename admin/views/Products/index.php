@@ -47,11 +47,13 @@
                         </thead>
                         <tbody>
                         <?php
+                            $c = 0;
                             foreach ($data as $key => $value) {
+                                $c += 1;
                         ?>
                             <tr>
                                 <td><input type="checkbox" name="checkbox"/></td>
-                                <td>1</td>
+                                <td><?php echo $c ?></td>
                                 <td><?php echo $value['name'] ?></td>
                                 <td><?php echo $value['price'] ?></td>
                                 <td><span class="text-success">Activated</span></td>
@@ -62,16 +64,6 @@
                         <?php
                             }
                         ?>
-                        <tr>
-                            <td><input type="checkbox" name="checkbox"/></td>
-                            <td>1</td>
-                            <td>Product 1</td>
-                            <td>100.000 VND</td>
-                            <td><span class="text-success">Activated</span></td>
-                            <td>15:00 05/10/2014</td>
-                            <td>15:00 05/10/2014</td>
-                            <td><a href="edit-product.html" class="btn btn-info">Edit</a></td>
-                        </tr>
 
                         </tbody>
                     </table>
