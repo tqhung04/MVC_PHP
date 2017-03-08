@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2017 at 04:24 PM
+-- Generation Time: Mar 08, 2017 at 05:21 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -30,7 +30,7 @@ CREATE TABLE `categories` (
   `id` int(10) NOT NULL,
   `name` varchar(225) NOT NULL COMMENT 'name of category',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -58,7 +58,7 @@ CREATE TABLE `products` (
   `image` varchar(225) DEFAULT NULL COMMENT 'link image of product',
   `categories_id` int(10) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -75,7 +75,12 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`, `image`, `categori
 (7, 'Điều hòa Panasonic 01', 18000000, 'Điều hòa Panasonic 01\r\nThiết kế bền, đẹp.\r\nBảo hành 1 năm.', NULL, 4, '2017-03-06 15:09:19', '2017-03-06 15:09:19'),
 (8, 'Điều hòa Panasonic 02', 20000000, 'Điều hòa Panasonic 01\r\nThiết kế bền, đẹp.\r\nBảo hành 1 năm.', NULL, 4, '2017-03-06 15:09:19', '2017-03-06 15:09:19'),
 (9, 'Tủ lạnh Toshiba 01', 15000000, 'Tủ lạnh Toshiba 01\r\nThiết kế bền, đẹp.\r\nBảo hành 1 năm', NULL, 5, '2017-03-06 15:10:36', '2017-03-06 15:10:36'),
-(10, 'Tủ lạnh Toshiba 02', 15000000, 'Tủ lạnh Toshiba 02\r\nThiết kế bền, đẹp.\r\nBảo hành 1 năm', NULL, 5, '2017-03-06 15:10:36', '2017-03-06 15:10:36');
+(10, 'Tủ lạnh Toshiba 02', 15000000, 'Tủ lạnh Toshiba 02\r\nThiết kế bền, đẹp.\r\nBảo hành 1 năm', NULL, 5, '2017-03-06 15:10:36', '2017-03-06 15:10:36'),
+(11, ':name', 0, ':description', ':image', 0, '2017-03-08 11:53:11', '2017-03-08 11:53:11'),
+(12, 'Demo 1', 10000, 'This is demo 1 product', '/assets/upload/Demo 1.png', 0, '2017-03-08 11:54:53', '2017-03-08 11:54:53'),
+(13, 'Demo 4', 123, '', '', 4, '2017-03-08 12:15:47', '2017-03-08 16:21:06'),
+(14, 'Demo 2', 123456, '', '/assets/upload/Demo 2.png', 1, '2017-03-08 12:16:21', '2017-03-08 16:20:09'),
+(15, 'Demo 3', 12003, '', '/assets/upload/Demo 3.png', 2, '2017-03-08 15:34:51', '2017-03-08 15:34:51');
 
 -- --------------------------------------------------------
 
@@ -90,7 +95,7 @@ CREATE TABLE `users` (
   `password` varchar(225) NOT NULL,
   `avatar` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -144,7 +149,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `users`
 --
