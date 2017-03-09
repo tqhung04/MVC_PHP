@@ -62,7 +62,17 @@
                                 </select>
                             </div>
                             <div class="clear"></div>
-                        </div>                          
+                        </div>      
+                        <div class="row-form">
+                            <div class="span3">Active</div>
+                            <div class="span9">
+                                <select name="productActive">
+                                    <option value="0">Active</option>
+                                    <option value="1">Deactive</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>                    
                         <div class="row-form">
                             <div class="span3">
                             	<button class="btn btn-success" type="submit" name="create">Create</button>

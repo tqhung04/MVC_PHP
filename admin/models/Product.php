@@ -34,21 +34,25 @@ class Product extends FT_Model {
 		}
 	}
 
-	public function addProduct ($name, $price, $description, $image, $categories_id) {
+	public function addProduct ($name, $price, $description, $image, $categories_id, $productActive) {
 		try {
 			$stmt = parent::connect()->prepare('
 				INSERT INTO 
-				products (name, price, description, image, categories_id) 
-				VALUES (:name, :price, :description, :image, :categories_id)');
+				products (name, price, description, image, categories_id, active) 
+				VALUES (:name, :price, :description, :image, :categories_id, :productActive)');
 			$stmt->execute(array(
 				':name' => $name,
 				':price' => $price,
 				':description' => $description,
 				':image' => $image,
 				':categories_id' => $categories_id,
-				));
+				':productActive' => $productActive
+			));
+
+			return true;
 		} catch (Exception $e) {
 			echo "<br>" . $e->getMessage();
+			return false;
 		}
 	}
 

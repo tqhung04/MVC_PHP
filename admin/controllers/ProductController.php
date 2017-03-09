@@ -114,10 +114,17 @@ class ProductController extends FT_Controller {
 
 						// Check description
 						$productDescription = empty( $_POST['productDescription'] ) ? '' : $_POST['productDescription'];
+						// Check active
+						$productActive = empty( $_POST['productActive'] ) ? 0 : $_POST['productActive'];
 
 						// echo $productName, $productPrice, $productDescription, $productImg, $productCategory;
 						$productCategoryId = Category::getIdByName($productCategory);
-						Product::addProduct($productName, $productPrice, $productDescription, $productImg, $productCategoryId);
+						$add = Product::addProduct($productName, $productPrice, $productDescription, $productImg, $productCategoryId, $productActive);
+						if ( $add == 1 ) {
+							header( 'Location: ' . BASE_URL . '?p=admin&c=product');
+						} else {
+							$_SESSION['errMsg'] = 'Can not add new product.';
+						}
 					}
 				}
 			} else {
