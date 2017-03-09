@@ -70,7 +70,24 @@
                                 </select>
                             </div>
                             <div class="clear"></div>
-                        </div>                          
+                        </div> 
+                        <div class="row-form">
+                            <div class="span3">Active</div>
+                            <div class="span9">
+                                <select name="productActive">
+                                    <?php
+                                        if ( $data['active'] == 1 ) {
+                                            echo '<option value="1">Deactive</option>';
+                                            echo '<option value="0">Active</option>';
+                                        } else {
+                                            echo '<option value="0">Active</option>';
+                                            echo '<option value="1">Deactive</option>';
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>                         
                         <div class="row-form">
                         	<div class="span3">
                                 <button class="btn btn-success" type="submit" name="update">Update</button>

@@ -27,6 +27,7 @@ class ProductController extends FT_Controller {
 					$productName = $_POST['productName'];
 					$productPrice = $_POST['productPrice'];
 					$productCategory = $_POST['productCategory'];
+					$productActive = $_POST['productActive'];
 
 					// Check product's name
 					$checkProductName = Product::checkExistProductName($productName);
@@ -57,8 +58,8 @@ class ProductController extends FT_Controller {
 
 							$productCategoryId = Category::getIdByName($productCategory);
 
-							// echo $productName, $productPrice, $productDescription, $productImg, $productCategoryId;
-							$update = Product::updateProduct($id, $productName, $productPrice, $productDescription, $productImg, $productCategoryId);
+							// echo $productName, $productPrice, $productDescription, $productImg, $productCategoryId, 'active: ' . $productActive;
+							$update = Product::updateProduct($id, $productName, $productPrice, $productDescription, $productImg, $productCategoryId, $productActive);
 
 							if ( $update == 1) {
 								header( 'Location: ' . BASE_URL . '?p=admin&c=product');

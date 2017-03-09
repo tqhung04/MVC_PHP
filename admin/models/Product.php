@@ -52,11 +52,16 @@ class Product extends FT_Model {
 		}
 	}
 
-	public function updateProduct ($id, $name, $price, $description, $image, $categories_id) {
+	public function updateProduct ($id, $name, $price, $description, $image, $categories_id, $productActive) {
 		try {
 			$stmt = parent::connect()->prepare('
 				UPDATE products 
-				SET name=:name, price=:price, description=:description, image=:image, categories_id=:categories_id
+				SET name=:name, 
+					price=:price, 
+					description=:description, 
+					image=:image, 
+					categories_id=:categories_id, 
+					active=:productActive
 				WHERE id=:id');
 				
 			$stmt->execute(array(
@@ -65,8 +70,9 @@ class Product extends FT_Model {
 				':description' => $description,
 				':image' => $image,
 				':categories_id' => $categories_id,
-				':id' => $id
-				));
+				':id' => $id,
+				':productActive' => $productActive
+			));
 
 			return true;
 		} catch (Exception $e) {
