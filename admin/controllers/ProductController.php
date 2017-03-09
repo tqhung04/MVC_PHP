@@ -9,6 +9,35 @@ class ProductController extends FT_Controller {
 
 	function index () {
 		$products = Product::getAllProducts();
+
+		if ( isset($_POST['delete']) ) {
+			if ( isset($_POST['cb']) ) {
+				$cb = $_POST['cb'];
+				$checked_products = array_keys($cb);
+				foreach ($checked_products as $p) {
+					$delete = Product::deleteProduct($p);
+					if ( $delete == 1 ) {
+						header( 'Location: ' . BASE_URL . '?p=admin&c=product');
+					} else {
+						$_SESSION['errMsg'] = 'Can not deactive products.';
+					}
+				}
+			}
+		} else if ( isset($_POST['active']) ) {
+			if ( isset($_POST['cb']) ) {
+				$cb = $_POST['cb'];
+				$checked_products = array_keys($cb);
+				foreach ($checked_products as $p) {
+					$active = Product::activeProduct($p);
+					if ( $active == 1 ) {
+						header( 'Location: ' . BASE_URL . '?p=admin&c=product');
+					} else {
+						$_SESSION['errMsg'] = 'Can not active products.';
+					}
+				}
+			}
+		}
+
 		include PATH_ADMIN . '/views/Products/index.php';
 	}
 
@@ -133,6 +162,10 @@ class ProductController extends FT_Controller {
 		}
 
 		include PATH_ADMIN . '/views/Products/add.php';
+	}
+
+	function delete () {
+		
 	}
 
 }
