@@ -46,4 +46,23 @@ class Base_Model extends dbconnect {
 		}
 	}
 
+	public function search ($model, $content) {
+		try {
+			if ($model == 'category') $model = 'categorie';
+			$sql = 'SELECT * FROM ' . $model . 's WHERE name LIKE "%' . $content . '%"';
+			$stmt = parent::connect()->prepare($sql);
+			$stmt->execute();
+
+			if ( $stmt->rowCount() > 0 ) {
+				return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			}
+			else {
+				return 'No result for ' . $content;
+			}
+		} catch (Exception $e) {
+			echo "<br>" . $e->getMessage();
+			return false;
+		}
+	}
+
 }

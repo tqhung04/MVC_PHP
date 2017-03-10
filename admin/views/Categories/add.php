@@ -4,7 +4,7 @@
     <div class="breadLine">
 
         <ul class="breadcrumb">
-            <li><a href="list-categories.html">List Categories</a> <span class="divider">></span></li>
+            <li><a href="<?php echo BASE_URL . '?p=admin&c=category'; ?>">List Categories</a> <span class="divider">></span></li>
             <li class="active">Add</li>
         </ul>
 

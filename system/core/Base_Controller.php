@@ -3,6 +3,14 @@ class Base_Controller {
 	public function __construct () {
 	}
 
+    public function showHiddenInput () {
+        foreach ($_GET as $key => $value) {
+            if ( $key != 'search' ) {
+                echo("<input type='hidden' name='$key' value='$value'/>");
+            }
+        }
+    }
+
 	public function checkPagiFirst ($i) {
 		if ( $i == 1 ) {
 			return 'paginate_button_disabled';
@@ -131,5 +139,17 @@ class Base_Controller {
                 }
             }
         }
+    }
+
+    public function search_base () {
+        if ( isset($_GET['search']) ) {
+            $model = $_GET['c'];
+            $content = $_GET['search'];
+            $data = ucfirst(strtolower($model))::search($model, $content);
+            return $data;
+        } else {
+            // 
+        }
+        
     }
 }

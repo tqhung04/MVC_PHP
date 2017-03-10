@@ -23,6 +23,11 @@ class CategoryController extends Base_Controller {
 			parent::deactive($_GET['c']);
 		}
 
+		// Search
+		if ( isset($_GET['search']) ) {
+			$categories = parent::search_base();
+		}
+
 		include PATH_ADMIN . '/views/Categories/index.php';
 	}
 

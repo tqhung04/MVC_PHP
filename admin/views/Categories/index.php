@@ -4,7 +4,7 @@
     <div class="breadLine">
 
         <ul class="breadcrumb">
-            <li><a href="list-categories.html">List Categories</a></li>
+            <li><a href="<?php echo BASE_URL . '?p=admin&c=category'; ?>">List Categories</a></li>
         </ul>
 
     </div>
@@ -13,7 +13,10 @@
 
         <div class="row-fluid">
             <div class="span12 search">
-                <form>
+                <form method="GET" action="<?php echo BASE_URL . '?p=admin&c=category&search'; ?>">
+                    <?php 
+                        parent::showHiddenInput();
+                    ?>
                     <input type="text" class="span11" placeholder="Some text for search..." name="search"/>
                     <button class="btn span1" type="submit">Search</button>
                 </form>
@@ -48,6 +51,7 @@
                             <tbody>
                             <?php
                                     $c = 0;
+                                    if ( is_array($categories) )
                                     foreach ($categories as $key => $value) {
                                         $c += 1;
                                 ?>
@@ -70,6 +74,9 @@
                                         <td><a href="<?php echo BASE_URL . '?p=admin&c=category&a=edit&id=' . $value['id']; ?>" class="btn btn-info">Edit</a></td>
                                     </tr>
                                 <?php
+                                    }
+                                    else {
+                                        echo '<p class="error">' . $categories . '</p>';
                                     }
                                 ?>
                             </tbody>

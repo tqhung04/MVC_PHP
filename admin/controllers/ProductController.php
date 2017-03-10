@@ -24,6 +24,11 @@ class ProductController extends Base_Controller {
 			parent::deactive($_GET['c']);
 		}
 
+		// Search
+		if ( isset($_GET['search']) && !empty($_GET['search'])) {
+			$products = parent::search_base();
+		}
+
 		include PATH_ADMIN . '/views/Products/index.php';
 	}
 
