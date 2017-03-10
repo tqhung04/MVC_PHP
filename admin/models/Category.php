@@ -5,11 +5,23 @@ class Category extends Base_Model {
 	}
 
 	public function getAllCategories () {
-		$sql = 'SELECT * FROM categories ORDER BY id ASC';
-		$stmt = parent::connect()->prepare($sql);
-		$stmt -> execute();
-		$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		return $data;
+		$pagination = new Pagination;
+		$pagination->tblName = 'categories';
+		$pagination->current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+		$categories = $pagination->listPages('categories');
+		$totalPages = $pagination->totalPages();
+		return array(
+			'categories' => $categories,
+			'totalPages' => $totalPages
+		);
+	}
+
+	public function getCategory ($id) {
+		$stmt = parent::connect()->prepare('SELECT * FROM categories WHERE id = :id');
+		$stmt->execute(array(
+			':id' => $id
+		));
+		return $data = $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
 	public function getIdByName ($categoryName) {
@@ -34,6 +46,19 @@ class Category extends Base_Model {
 		
 		if ($stmt->rowCount() > 0) {
 			return $data['name'];
+		} else {
+			return false;
+		}
+	}
+
+	public function checkExistCategoryName ($name) {
+		$stmt = parent::connect()->prepare('SELECT * FROM categories WHERE name = :name');
+		$stmt->execute(array(
+			':name' => $name
+			));
+		$data = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($stmt->rowCount() > 0) {
+			return true;
 		} else {
 			return false;
 		}

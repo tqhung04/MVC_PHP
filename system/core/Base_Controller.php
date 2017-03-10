@@ -25,7 +25,7 @@ class Base_Controller {
             <?php
                 } else {
             ?>
-                <a class="paginate_button" href="<?php echo BASE_URL . '?p=admin&c=' . $name . 'product&page=' . $i; ?>"><?php echo $i; ?></a>
+                <a class="paginate_button" href="<?php echo BASE_URL . '?p=admin&c=' . $name . '&page=' . $i; ?>"><?php echo $i; ?></a>
             <?php
             }
             ?>
@@ -106,7 +106,7 @@ class Base_Controller {
             $cb = $_POST['cb'];
             $checked = array_keys($cb);
             foreach ($checked as $p) {
-                $active = ucfirst(strtolower($name))::activeProduct($p);
+                $active = ucfirst(strtolower($name))::active($p, $name);
                 if ( $active == 1 ) {
                     $_SESSION['errMsg'] = '';
                     header( 'Location: ' . BASE_URL . '?p=admin&c=' . $name . '&page=' . $_GET['page']);
@@ -122,7 +122,7 @@ class Base_Controller {
             $cb = $_POST['cb'];
             $checked = array_keys($cb);
             foreach ($checked as $p) {
-                $active = ucfirst(strtolower($name))::deactiveProduct($p);
+                $active = ucfirst(strtolower($name))::deactive($p, $name);
                 if ( $active == 1 ) {
                     $_SESSION['errMsg'] = '';
                     header( 'Location: ' . BASE_URL . '?p=admin&c=' . $name . '&page=' . $_GET['page']);

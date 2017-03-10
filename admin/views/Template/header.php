@@ -12,7 +12,7 @@
     <link href="../../assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css" />
     
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="../../assets/js/script.js"></script>
 
 </head>

@@ -8,17 +8,15 @@ class ProductController extends Base_Controller {
 	}
 
 	public function index () {
+
 		if ( !isset($_GET['page']) ) {
 			$_GET['page'] = 1;
 		}
-
 		$data = Product::getAllProducts();
-		if ( isset($_GET['page']) ) {
-			$products = $data['products'];
-			$totalPages = $data['totalPages'];
-			$previous = $_GET['page'] - 1;
-			$next = $_GET['page'] + 1;
-		}
+		$products = $data['products'];
+		$totalPages = $data['totalPages'];
+		$previous = $_GET['page'] - 1;
+		$next = $_GET['page'] + 1;
 
 		if ( isset($_POST['active']) ) {
 			parent::active($_GET['c']);

@@ -88,43 +88,4 @@ class Product extends Base_Model {
 			return false;
 		}
 	}
-
-	public function deactiveProduct ($id) {
-		try {
-			$stmt = parent::connect()->prepare('
-				UPDATE products 
-				SET	active=:productActive
-				WHERE id=:id');
-			$active = 1;
-			$stmt->execute(array(
-				':productActive' => 1,
-				'id' => $id
-			));
-
-			return true;
-		} catch (Exception $e) {
-			echo "<br>" . $e->getMessage();
-			return false;
-		}
-
-	}
-
-	public function activeProduct ($id) {
-		try {
-			$stmt = parent::connect()->prepare('
-				UPDATE products 
-				SET	active=:productActive
-				WHERE id=:id');
-			$stmt->execute(array(
-				':productActive' => 0,
-				'id' => $id
-			));
-
-			return true;
-		} catch (Exception $e) {
-			echo "<br>" . $e->getMessage();
-			return false;
-		}
-	}
-
 }

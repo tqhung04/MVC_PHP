@@ -19,17 +19,17 @@
 
     <ul class="navigation">
         <li>
-            <a href="list-categories.html">
+            <a href="<?php echo BASE_URL . '?p=admin&c=category' ?>">
                 <span class="isw-grid"></span><span class="text">Categories</span>
             </a>
         </li>
         <li>
-            <a href="list-products.html">
+            <a href="<?php echo BASE_URL . '?p=admin&c=product' ?>">
                 <span class="isw-list"></span><span class="text">Products</span>
             </a>
         </li>
         <li>
-            <a href="list-users.html">
+            <a href="<?php echo BASE_URL . '?p=admin&c=user' ?>">
                 <span class="isw-user"></span><span class="text">Users</span>
             </a>
         </li>

@@ -80,7 +80,7 @@
                         </table>
                         <div class="bulk-action">
                             <input class="btn btn-success" type="submit" name="active" value="Active">
-                            <input class="btn btn-danger" type="submit" name="deactive" value="Delete">
+                            <input class="btn btn-danger" type="submit" name="deactive" value="Deactive">
                         </div><!-- /bulk-action-->
                         <div class="dataTables_paginate">
                             <a class="first paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=1'; ?>">First</a>
