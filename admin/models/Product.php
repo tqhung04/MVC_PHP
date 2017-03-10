@@ -25,19 +25,6 @@ class Product extends Base_Model {
 
 	}
 
-	public function checkExistProductName ($name) {
-		$stmt = parent::connect()->prepare('SELECT * FROM products WHERE name = :name');
-		$stmt->execute(array(
-			':name' => $name
-			));
-		$data = $stmt->fetch(PDO::FETCH_ASSOC);
-		if ($stmt->rowCount() > 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	public function addProduct ($name, $price, $description, $image, $categories_id, $productActive) {
 		try {
 			$stmt = parent::connect()->prepare('

@@ -104,7 +104,7 @@ class ProductController extends Base_Controller {
 				$productCategory = $_POST['productCategory'];
 
 				// Check product's name
-				$checkProductName = Product::checkExistProductName($productName);
+				$checkProductName = Product::checkExist('products', $productName);
 				if ( $checkProductName == 1 ) {
 					// Product is Exist
 					$_SESSION['errMsg'] = "Product already exists.";

@@ -39,7 +39,18 @@
                             <div class="clear"></div>
                         </div>                          
                         <div class="row-form">
-                            <button class="btn btn-success" type="submit" name="create">Create</button>
+                            <div class="span3">
+                                <button class="btn btn-success" type="submit" name="create">Create</button>
+                            </div>
+                            <div class="span9">
+                                <p class="error">
+                                    <?php
+                                        if ( isset($_SESSION['errMsg']) ) {
+                                            echo $_SESSION['errMsg'];
+                                        }
+                                    ?>
+                                </p>
+                            </div>
                             <div class="clear"></div>
                         </div>
                     </form>

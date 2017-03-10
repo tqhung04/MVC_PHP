@@ -29,15 +29,20 @@ class CategoryController extends Base_Controller {
 	public function add () {
 		
 		if ( isset($_POST['create']) ) {
-			if ( isset($_POST['categoryName'])  && isset($_POST['categoryActive']) ) {
+			if ( !empty($_POST['categoryName']) ) {
+				$_SESSION['errMsg'] = '';
 				$categoryName = $_POST['categoryName'];
-				$categoryActive = $_POST['categoryActive'];
-
-				$check = Category::checkExistCategoryName();
+				$categoryActive = empty( $_POST['productActive'] ) ? 0 : $_POST['categoryActive'];
+				$check = Category::checkExist('categories', $categoryName);
 				if ( $check == 1 ) {
 					$_SESSION['errMsg'] = 'Category already exists.';
 				} else {
-					echo $categoryName, $categoryActive;
+					$add = Category::addCategory($categoryName, $categoryActive);
+					if ( $add == 1 ) {
+						header( 'Location: ' . BASE_URL . '?p=admin&c=category');
+					} else {
+						$_SESSION['errMsg'] = 'Can not add new category.';
+					}
 				}
 			} else {
 				$_SESSION['errMsg'] = 'Name is required.';

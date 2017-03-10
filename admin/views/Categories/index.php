@@ -37,7 +37,7 @@
                             <thead>
                             <tr>
                                 <th><input type="checkbox" id="select_all" name="select_all"/></th>
-                                <th width="15%" class="sorting"><a href="#">ID</a></th>
+                                <th width="15%" class="sorting"><a href="#">No</a></th>
                                 <th width="35%" class="sorting"><a href="#">Category Name</a></th>
                                 <th width="20%" class="sorting"><a href="#">Activate</a></th>
                                 <th width="10%" class="sorting"><a href="#">Time Created</a></th>

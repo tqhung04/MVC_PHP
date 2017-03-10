@@ -51,17 +51,21 @@ class Category extends Base_Model {
 		}
 	}
 
-	public function checkExistCategoryName ($name) {
-		$stmt = parent::connect()->prepare('SELECT * FROM categories WHERE name = :name');
-		$stmt->execute(array(
-			':name' => $name
+	public function addCategory ($name, $active) {
+		try {
+			$stmt = parent::connect()->prepare('
+				INSERT INTO 
+				categories (name, active) 
+				VALUES (:name, :active)');
+			$stmt->execute(array(
+				':name' => $name,
+				':active' => $active
 			));
-		$data = $stmt->fetch(PDO::FETCH_ASSOC);
-		if ($stmt->rowCount() > 0) {
+
 			return true;
-		} else {
+		} catch (Exception $e) {
+			echo "<br>" . $e->getMessage();
 			return false;
 		}
 	}
-
 }
