@@ -37,7 +37,7 @@
                             <thead>
                             <tr>
                                 <th><input type="checkbox" id="select_all" name="select_all"/></th>
-                                <th width="10%" class="sorting"><a href="#">ID</a></th>
+                                <th width="10%" class="sorting"><a href="#">No</a></th>
                                 <th width="30%" class="sorting"><a href="#">Product Name</a></th>
                                 <th width="15%" class="sorting"><a href="#">Price</a></th>
                                 <th width="15%" class="sorting"><a href="#">Image</a></th>
@@ -80,17 +80,16 @@
                         </table>
                         <div class="bulk-action">
                             <input class="btn btn-success" type="submit" name="active" value="Active">
-                            <input class="btn btn-danger" type="submit" name="delete" value="Delete">
+                            <input class="btn btn-danger" type="submit" name="deactive" value="Delete">
                         </div><!-- /bulk-action-->
                         <div class="dataTables_paginate">
-                            <a class="first paginate_button paginate_button_disabled" href="#">First</a>
-                            <a class="previous paginate_button paginate_button_disabled" href="#">Previous</a>
-                            <span>
-                                <a class="paginate_active" href="#">1</a>
-                                <a class="paginate_button" href="#">2</a>
-                            </span>
-                            <a class="next paginate_button" href="#">Next</a>
-                            <a class="last paginate_button" href="#">Last</a>
+                            <a class="first paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=1'; ?>">First</a>
+                            <a class="previous paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=' . $previous; ?>">Previous</a>
+                            <?php
+                                parent::pagiHandling('product', $totalPages);
+                            ?>
+                            <a class="next paginate_button <?php echo parent::checkPagiLast($_GET['page'], $totalPages); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=' . $next; ?>">Next</a>
+                            <a class="last paginate_button <?php echo parent::checkPagiLast($_GET['page'], $totalPages); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=' . $totalPages; ?>">Last</a>
                         </div>
                         <div class="clear"></div>
                     </form>

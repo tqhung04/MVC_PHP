@@ -3,7 +3,7 @@ if( !isset($_SESSION) ) {
     session_start(); 
 } 
 
-function FT_Load () {
+function Load () {
 
 	include_once PATH_SYSTEM . '/config/dbconnect.php';
 
@@ -30,8 +30,8 @@ function FT_Load () {
 			die ( 'File ' . $controller . '.php no exists.' );
 		}
 		
-		include_once PATH_SYSTEM . '/core/FT_Controller.php';
-		include_once PATH_SYSTEM . '/core/FT_Model.php';
+		include_once PATH_SYSTEM . '/core/Base_Model.php';
+		include_once PATH_SYSTEM . '/core/Base_Controller.php';
 		require_once PATH_ADMIN . '/controllers/' . $controller . '.php';
 
 		// Check Class

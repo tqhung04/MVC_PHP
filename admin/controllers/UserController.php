@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends FT_Controller {
+class UserController extends Base_Controller {
 	function __construct () {
 		
 	}

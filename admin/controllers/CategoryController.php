@@ -1,6 +1,6 @@
 <?php
 
-class CategoryController extends FT_Controller {
+class CategoryController extends Base_Controller {
 	function __construct () {
 		
 	}

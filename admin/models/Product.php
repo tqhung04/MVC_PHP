@@ -1,22 +1,26 @@
 <?php
-class Product extends FT_Model {
+class Product extends Base_Model {
 	function __construct () {
 
 	}
 
 	public function getAllProducts () {
-		$sql = 'SELECT * FROM products ORDER BY id DESC';
-		$stmt = parent::connect()->prepare($sql);
-		$stmt -> execute();
-		$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		return $data;
+		$pagination = new Pagination;
+		$pagination->tblName = 'products';
+		$pagination->current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+		$products = $pagination->listPages('products');
+		$totalPages = $pagination->totalPages();
+		return array(
+			'products' => $products,
+			'totalPages' => $totalPages
+		);
 	}
 
 	public function getProduct ($id) {
 		$stmt = parent::connect()->prepare('SELECT * FROM products WHERE id = :id');
 		$stmt->execute(array(
 			':id' => $id
-			));
+		));
 		return $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
 	}
@@ -85,7 +89,7 @@ class Product extends FT_Model {
 		}
 	}
 
-	public function deleteProduct ($id) {
+	public function deactiveProduct ($id) {
 		try {
 			$stmt = parent::connect()->prepare('
 				UPDATE products 

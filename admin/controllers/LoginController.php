@@ -1,7 +1,7 @@
 <?php
 include_once PATH_ADMIN . '/models/User.php';
 
-class LoginController extends FT_Controller {
+class LoginController extends Base_Controller {
 	function __construct () {
 
 	}

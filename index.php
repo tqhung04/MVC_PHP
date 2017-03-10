@@ -6,9 +6,10 @@
 	define( 'PATH_ADMIN', BASE_PATH . '/admin' );
 
 	require( PATH_SYSTEM . '/config/config.php' );
-	include_once( PATH_SYSTEM . '/core/FT_Common.php' ); 
+	include_once( PATH_SYSTEM . '/core/Base_Common.php' );
+	include_once( PATH_SYSTEM . '/config/pagination.php' );
 
-	FT_Load();
+	Load();
 ?>
 <!DOCTYPE html>
 <html>

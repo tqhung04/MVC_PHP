@@ -1,5 +1,5 @@
 <?php
-class FT_Model extends dbconnect {
+class Base_Model extends dbconnect {
 
 	public function __construct () {
 
@@ -7,4 +7,5 @@ class FT_Model extends dbconnect {
 
 	public function checkExist ($command) {
 	}
+
 }

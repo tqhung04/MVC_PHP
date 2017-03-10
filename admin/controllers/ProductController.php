@@ -2,46 +2,34 @@
 include_once PATH_ADMIN . '/models/Product.php';
 include_once PATH_ADMIN . '/models/Category.php';
 
-class ProductController extends FT_Controller {
-	function __construct () {
+class ProductController extends Base_Controller {
+	public function __construct () {
 
 	}
 
-	function index () {
-		$products = Product::getAllProducts();
+	public function index () {
+		if ( !isset($_GET['page']) ) {
+			$_GET['page'] = 1;
+		}
 
-		if ( isset($_POST['delete']) ) {
-			if ( isset($_POST['cb']) ) {
-				$cb = $_POST['cb'];
-				$checked_products = array_keys($cb);
-				foreach ($checked_products as $p) {
-					$delete = Product::deleteProduct($p);
-					if ( $delete == 1 ) {
-						header( 'Location: ' . BASE_URL . '?p=admin&c=product');
-					} else {
-						$_SESSION['errMsg'] = 'Can not deactive products.';
-					}
-				}
-			}
-		} else if ( isset($_POST['active']) ) {
-			if ( isset($_POST['cb']) ) {
-				$cb = $_POST['cb'];
-				$checked_products = array_keys($cb);
-				foreach ($checked_products as $p) {
-					$active = Product::activeProduct($p);
-					if ( $active == 1 ) {
-						header( 'Location: ' . BASE_URL . '?p=admin&c=product');
-					} else {
-						$_SESSION['errMsg'] = 'Can not active products.';
-					}
-				}
-			}
+		$data = Product::getAllProducts();
+		if ( isset($_GET['page']) ) {
+			$products = $data['products'];
+			$totalPages = $data['totalPages'];
+			$previous = $_GET['page'] - 1;
+			$next = $_GET['page'] + 1;
+		}
+
+		if ( isset($_POST['active']) ) {
+			parent::active($_GET['c']);
+		} else if ( isset($_POST['deactive']) ) {
+			parent::deactive($_GET['c']);
 		}
 
 		include PATH_ADMIN . '/views/Products/index.php';
 	}
 
-	function edit () {
+	public function edit () {
 		
 		if ( isset($_GET['id']) ) {
 			$id = $_GET['id'];
@@ -106,7 +94,7 @@ class ProductController extends FT_Controller {
 		include PATH_ADMIN . '/views/Products/edit.php';
 	}
 
-	function add () {
+	public function add () {
 		$categories = Category::getAllCategories();
 
 		if ( isset($_POST['create']) ) {
@@ -162,10 +150,6 @@ class ProductController extends FT_Controller {
 		}
 
 		include PATH_ADMIN . '/views/Products/add.php';
-	}
-
-	function delete () {
-		
 	}
 
 }

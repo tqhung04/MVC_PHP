@@ -1,5 +1,5 @@
 <?php
-class Category extends FT_Model {
+class Category extends Base_Model {
 	function __construct () {
 
 	}
