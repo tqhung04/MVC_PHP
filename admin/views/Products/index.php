@@ -34,7 +34,17 @@
                     <div class="clear"></div>
                 </div>
                 <div class="block-fluid table-sorting">
-                    <a href="<?php echo BASE_URL . '?p=admin&c=product&a=add'; ?>" class="btn btn-add">Add Product</a>
+                    <div class="row-fluid">
+                        <div class="span3">
+                            <a href="<?php echo BASE_URL . '?p=admin&c=product&a=add'; ?>" class="btn btn-add">Add Product</a>
+                        </div>
+                        <div class="span9">
+                            <?php
+                                if ( isset($_GET['search']) )
+                                echo '<p class="result">'.$total.' result for "' . $_GET['search'] . '"</p>';
+                            ?>
+                        </div>
+                    </div>
                     <form method="POST" action="#">
                         <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortable_2">
                             <thead>
@@ -53,7 +63,7 @@
                             <tbody>
                             <?php
                                 $c = 0;
-                                if ( is_array($products) )
+                                if ( !empty($products) )
                                 foreach ($products as $key => $value) {
                                     $c += 1;
                             ?>
@@ -78,9 +88,6 @@
                                 </tr>
                             <?php
                                 }
-                                else {
-                                    echo '<p class="error">' . $products . '</p>';
-                                }
                             ?>
 
                             </tbody>
@@ -89,15 +96,22 @@
                             <input class="btn btn-success" type="submit" name="active" value="Active">
                             <input class="btn btn-danger" type="submit" name="deactive" value="Deactive">
                         </div><!-- /bulk-action-->
-                        <div class="dataTables_paginate">
-                            <a class="first paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=1'; ?>">First</a>
-                            <a class="previous paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=' . $previous; ?>">Previous</a>
-                            <?php
-                                parent::pagiHandling('product', $totalPages);
+                        <?php
+                            if ( !isset($_GET['search']) ) {
                             ?>
-                            <a class="next paginate_button <?php echo parent::checkPagiLast($_GET['page'], $totalPages); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=' . $next; ?>">Next</a>
-                            <a class="last paginate_button <?php echo parent::checkPagiLast($_GET['page'], $totalPages); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=' . $totalPages; ?>">Last</a>
-                        </div>
+                                <div class="dataTables_paginate">
+                                    <a class="first paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=1'; ?>">First</a>
+                                    <a class="previous paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=' . $previous; ?>">Previous</a>
+                                    <?php
+                                        parent::pagiHandling('product', $totalPages);
+                                    ?>
+                                    <a class="next paginate_button <?php echo parent::checkPagiLast($_GET['page'], $totalPages); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=' . $next; ?>">Next</a>
+                                    <a class="last paginate_button <?php echo parent::checkPagiLast($_GET['page'], $totalPages); ?>" href="<?php echo BASE_URL . '?p=admin&c=product&page=' . $totalPages; ?>">Last</a>
+                                </div>
+                            <?php
+                            }
+                        ?>
+                        
                         <div class="clear"></div>
                     </form>
                 </div>

@@ -4,7 +4,6 @@ if( !isset($_SESSION) ) {
 } 
 
 function Load () {
-
 	include_once PATH_SYSTEM . '/config/dbconnect.php';
 
 	// Admin
@@ -17,8 +16,8 @@ function Load () {
 		if ( empty($_COOKIE['username']) && empty($_SESSION['username'])) {
 			$controller = $admin_config['login_controller'];
 		} else {
-			include PATH_ADMIN . '/views/Template/header.php';
-			include PATH_ADMIN . '/views/Template/menu_left.php';
+			include PATH_ADMIN . '/views/zTemplate/header.php';
+			include PATH_ADMIN . '/views/zTemplate/menu_left.php';
 			$controller = empty( $_GET['c'] ) ? $admin_config['default_controller'] : $_GET['c'];
 		}
 

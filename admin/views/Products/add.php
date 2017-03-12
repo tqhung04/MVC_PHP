@@ -49,7 +49,7 @@
                                 <select name="productCategory">
                                     <option value="">Choose a category...</option>
                                     <?php
-                                        foreach ($categories as $key => $value) {
+                                        foreach ($data as $key => $value) {
                                     ?>
                                         <option value="<?php echo $value['name']; ?>">
                                             <?php

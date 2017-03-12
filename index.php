@@ -15,6 +15,15 @@
 <html>
 <head>
 	<title>Index</title>
+	<style type="text/css">
+		.result {
+		    color: red;
+		    font-style: italic; 
+		    text-align: center;
+		    padding-top: 15px;
+		    font-size: 15px;
+		}
+	</style>
 </head>
 <body>
 	<a href="http://mvc.local?p=admin">Go to Admin</a>

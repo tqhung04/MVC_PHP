@@ -5,8 +5,8 @@ class Base_Model extends dbconnect {
 
 	}
 
-	public function checkExist ($nameTbl, $nameField) {
-		$sql = 'SELECT * FROM ' . $nameTbl . ' WHERE name = "' . $nameField . '"';
+	public function checkExist ($nameTbl, $nameField, $value) {
+		$sql = 'SELECT * FROM ' . $nameTbl . ' WHERE ' . $nameField . ' = "' . $value . '"'; ;
 		$stmt = parent::connect()->prepare($sql);
 		$stmt->execute();
 		$data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -48,16 +48,27 @@ class Base_Model extends dbconnect {
 
 	public function search ($model, $content) {
 		try {
-			if ($model == 'category') $model = 'categorie';
+			if ($model == 'category') {
+				$model = 'categorie';
+			}
 			$sql = 'SELECT * FROM ' . $model . 's WHERE name LIKE "%' . $content . '%"';
+			if ( $model == 'user' ) {
+				$sql = 'SELECT * FROM ' . $model . 's WHERE username LIKE "%' . $content . '%"';
+			}
+			
 			$stmt = parent::connect()->prepare($sql);
 			$stmt->execute();
 
 			if ( $stmt->rowCount() > 0 ) {
-				return $stmt->fetchAll(PDO::FETCH_ASSOC);
+				return array(
+					'data' => $stmt->fetchAll(PDO::FETCH_ASSOC),
+					'total' => $stmt->rowCount(),
+				);
 			}
 			else {
-				return 'No result for ' . $content;
+				return array(
+					'total' => $stmt->rowCount(),
+				);
 			}
 		} catch (Exception $e) {
 			echo "<br>" . $e->getMessage();

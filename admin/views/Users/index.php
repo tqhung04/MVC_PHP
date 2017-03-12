@@ -4,7 +4,7 @@
     <div class="breadLine">
 
         <ul class="breadcrumb">
-            <li><a href="<?php echo BASE_URL . '?p=admin&c=category'; ?>">List Categories</a></li>
+            <li><a href="<?php echo BASE_URL . '?p=admin&c=user'; ?>">List Users</a></li>
         </ul>
 
     </div>
@@ -29,14 +29,14 @@
             <div class="span12">
                 <div class="head">
                     <div class="isw-grid"></div>
-                    <h1>Categories Management</h1>
+                    <h1>Users Management</h1>
 
                     <div class="clear"></div>
                 </div>
                 <div class="block-fluid table-sorting">
                     <div class="row-fluid">
                         <div class="span3">
-                            <a href="<?php echo BASE_URL . '?p=admin&c=category&a=add'; ?>" class="btn btn-add">Add Category</a>
+                            <a href="<?php echo BASE_URL . '?p=admin&c=user&a=add'; ?>" class="btn btn-add">Add User</a>
                         </div>
                         <div class="span9">
                             <?php
@@ -45,30 +45,30 @@
                             ?>
                         </div>
                     </div>
-                    <form action="#" method="POST">
+                    <form method="POST" action="#">
                         <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortable_2">
                             <thead>
                             <tr>
-                                <th><input type="checkbox" id="select_all" name="select_all"/></th>
+                                <th><input type="checkbox" id="select_all"/></th>
                                 <th width="15%" class="sorting"><a href="#">No</a></th>
-                                <th width="35%" class="sorting"><a href="#">Category Name</a></th>
+                                <th width="35%" class="sorting"><a href="#">Username</a></th>
                                 <th width="20%" class="sorting"><a href="#">Activate</a></th>
                                 <th width="10%" class="sorting"><a href="#">Time Created</a></th>
                                 <th width="10%" class="sorting"><a href="#">Time Updated</a></th>
-                                <th width="10%" class="sorting"><a href="#">Action</a></th>
+                                <th width="10%">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                                    $c = 0;
-                                    if ( !empty($categories) )
-                                    foreach ($categories as $key => $value) {
-                                        $c += 1;
+                                $no = 0;
+                                if ( !empty($users) )
+                                foreach ($users as $key => $value) {
+                                    $no += 1;
                                 ?>
                                     <tr>
-                                        <td><input type="checkbox" name="cb[<?php echo $value['id'] ?>]" /></td>
-                                        <td><?php echo $c ?></td>
-                                        <td><?php echo $value['name'] ?></td>
+                                        <td><input type="checkbox" name="cb[<?php echo $value['id'] ?>]"/></td>
+                                        <td><?php echo $no; ?></td>
+                                        <td><?php echo $value['username']; ?></td>
                                         <td>
                                             <?php
                                                 if ( $value['active'] == 1 ) {
@@ -78,14 +78,14 @@
                                                 }
                                             ?>
                                         </td>
-                                        <td><?php echo $value['created_at'] ?></td>
-                                        <td><?php echo $value['updated_at'] ?></td>
-                                        
-                                        <td><a href="<?php echo BASE_URL . '?p=admin&c=category&a=edit&id=' . $value['id']; ?>" class="btn btn-info">Edit</a></td>
+                                        <td><?php echo $value['created_at']; ?></td>
+                                        <td><?php echo $value['updated_at']; ?></td>
+                                        <td><a href="<?php echo BASE_URL . '?p=admin&c=user&a=edit&id=' . $value['id']; ?>" class="btn btn-info">Edit</a></td>
                                     </tr>
                                 <?php
-                                    }
-                                ?>
+                                }
+                            ?>
+                            
                             </tbody>
                         </table>
                         <div class="bulk-action">
@@ -96,13 +96,13 @@
                             if ( !isset($_GET['search']) ) {
                             ?>
                                 <div class="dataTables_paginate">
-                                    <a class="first paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=category&page=1'; ?>">First</a>
-                                    <a class="previous paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=category&page=' . $previous; ?>">Previous</a>
+                                    <a class="first paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=user&page=1'; ?>">First</a>
+                                    <a class="previous paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=user&page=' . $previous; ?>">Previous</a>
                                     <?php
-                                        parent::pagiHandling('category', $totalPages);
+                                        parent::pagiHandling('user', $totalPages);
                                     ?>
-                                    <a class="next paginate_button <?php echo parent::checkPagiLast($_GET['page'], $totalPages); ?>" href="<?php echo BASE_URL . '?p=admin&c=category&page=' . $next; ?>">Next</a>
-                                    <a class="last paginate_button <?php echo parent::checkPagiLast($_GET['page'], $totalPages); ?>" href="<?php echo BASE_URL . '?p=admin&c=category&page=' . $totalPages; ?>">Last</a>
+                                    <a class="next paginate_button <?php echo parent::checkPagiLast($_GET['page'], $totalPages); ?>" href="<?php echo BASE_URL . '?p=admin&c=user&page=' . $next; ?>">Next</a>
+                                    <a class="last paginate_button <?php echo parent::checkPagiLast($_GET['page'], $totalPages); ?>" href="<?php echo BASE_URL . '?p=admin&c=user&page=' . $totalPages; ?>">Last</a>
                                 </div>
                             <?php
                             }

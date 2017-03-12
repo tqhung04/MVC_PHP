@@ -16,6 +16,12 @@ class Category extends Base_Model {
 		);
 	}
 
+	public function getAllCategoriesNoPagi () {
+		$stmt = parent::connect()->prepare('SELECT name FROM categories');
+		$stmt->execute();
+		return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	public function getCategory ($id) {
 		$stmt = parent::connect()->prepare('SELECT * FROM categories WHERE id = :id');
 		$stmt->execute(array(
@@ -62,6 +68,26 @@ class Category extends Base_Model {
 				':active' => $active
 			));
 
+			return true;
+		} catch (Exception $e) {
+			echo "<br>" . $e->getMessage();
+			return false;
+		}
+	}
+
+	public function editCategory ($id, $name, $active) {
+		try {
+			$stmt = parent::connect()->prepare('
+				UPDATE categories 
+				SET name=:name,
+					active=:active
+				WHERE id=:id');
+				
+			$stmt->execute(array(
+				':name' => $name,
+				':active' => $active,
+				':id' => $id,
+			));
 			return true;
 		} catch (Exception $e) {
 			echo "<br>" . $e->getMessage();

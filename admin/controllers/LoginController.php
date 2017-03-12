@@ -18,15 +18,15 @@ class LoginController extends Base_Controller {
 				$password = $_POST['inputPassword'];
 
 				$check = User::login($username, $password);
-				if ( $check == 1 ) {
+				if ( $check['status'] == 0) {
 					$_SESSION['errMsg'] = '';
-
+					setcookie('id', $check['data']['id'], time() + (86400 * 30), "/");
+					setcookie('avatar', $check['data']['avatar'], time() + (86400 * 30), "/");
 					if( $_POST["cbRemember"] == 1 ) {
 						setcookie('username', $username, time() + (86400 * 30), "/");
 						setcookie('password', $password, time() + (86400 * 30), "/");
-					} else {
-						$_SESSION['username'] = $username;
 					}
+					$_SESSION['username'] = $username;
 					header( 'Location: ' . BASE_URL . '?p=admin');
 				} else {
 					$_SESSION['errMsg'] = "User & password doesn't match.";

@@ -32,8 +32,8 @@ class Pagination {
     }
 
     public function listPages() {
-        if ( $this->current_page > $this->totalPages($this->tblName) ) {
-            $this->current_page = $this->totalPages;
+        if ( $this->current_page > $this->totalPages() ) {
+            $this->current_page = $this->totalPages();
         } else if ( $this->current_page < 1 ) {
             $this->current_page = 1;
         }

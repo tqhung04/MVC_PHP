@@ -1,8 +1,13 @@
 <?php
+include_once PATH_ADMIN . '/models/User.php';
 class Base_Controller {
-	public function __construct () {
-	}
+	function __construct () {
+        if ( !isset($_GET['page']) ) {
+            $_GET['page'] = 1;
+        } else {
 
+        }
+	}
     public function showHiddenInput () {
         foreach ($_GET as $key => $value) {
             if ( $key != 'search' ) {
@@ -10,24 +15,22 @@ class Base_Controller {
             }
         }
     }
-
 	public function checkPagiFirst ($i) {
 		if ( $i == 1 ) {
 			return 'paginate_button_disabled';
 		}
 	}
-
 	public function checkPagiLast ($i, $totalPages) {
 		if ( $i == $totalPages ) {
 			return 'paginate_button_disabled';
 		}
 	}
-
 	public function pagiHandling ($name, $totalPages) {
+        $page = $_GET['page'];
 		if ( $totalPages <= 5 ) {
             for ( $i = 1; $i <= $totalPages; $i ++ ) {
                 echo '<span>';
-                if ( $i == $_GET['page'] ) {
+                if ( $i == $page ) {
             ?>
                 <a class="paginate_active" href="<?php echo BASE_URL . '?p=admin&c=' . $name . '&page=' . $i; ?>"><?php echo $i; ?></a>
             <?php
@@ -40,17 +43,15 @@ class Base_Controller {
             <?php
                 echo '</span>';
             }
-        }
-        
-        else if ( $totalPages > 5 ) {
-            $currentPage = $_GET['page'];
+        } else if ( $totalPages > 5 ) {
+            $currentPage = $page;
             if ( $currentPage - 3 > 0 && ($currentPage+2) < $totalPages ) {
             ?>
                 <a class="paginate_button" href="">...</a>
             <?php
                 for ( $i = $currentPage - 2; $i <= $currentPage + 2; $i ++ ) {
                     echo '<span>';
-                    if ( $i == $_GET['page'] ) {
+                    if ( $i == $page ) {
                     ?>
                         <a class="paginate_active" href="<?php echo BASE_URL . '?p=admin&c=' . $name . '&page=' . $i; ?>"><?php echo $i; ?></a>
                     <?php
@@ -69,7 +70,7 @@ class Base_Controller {
             } else if ( $currentPage - 3 <= 0) {
                 for ( $i = 1; $i <= $currentPage + 2; $i ++ ) {
                     echo '<span>';
-                    if ( $i == $_GET['page'] ) {
+                    if ( $i == $page ) {
                     ?>
                         <a class="paginate_active" href="<?php echo BASE_URL . '?p=admin&c=' . $name . '&page=' . $i; ?>"><?php echo $i; ?></a>
                     <?php
@@ -91,7 +92,7 @@ class Base_Controller {
                 <?php
                 for ( $i = $currentPage - 2; $i <= $totalPages; $i ++ ) {
                     echo '<span>';
-                    if ( $i == $_GET['page'] ) {
+                    if ( $i == $page ) {
                     ?>
                         <a class="paginate_active" href="<?php echo BASE_URL . '?p=admin&c=' . $name . '&page=' . $i; ?>"><?php echo $i; ?></a>
                     <?php
@@ -108,7 +109,6 @@ class Base_Controller {
             
         }
 	}
-
     public function active ($name) {
         if ( isset($_POST['cb']) ) {
             $cb = $_POST['cb'];
@@ -124,8 +124,8 @@ class Base_Controller {
             }
         }
     }
-
     public function deactive ($name) {
+        echo $name;
         if ( isset($_POST['cb']) ) {
             $cb = $_POST['cb'];
             $checked = array_keys($cb);
@@ -140,7 +140,6 @@ class Base_Controller {
             }
         }
     }
-
     public function search_base () {
         if ( isset($_GET['search']) ) {
             $model = $_GET['c'];
@@ -149,7 +148,6 @@ class Base_Controller {
             return $data;
         } else {
             // 
-        }
-        
+        }   
     }
 }
