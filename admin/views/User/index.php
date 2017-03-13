@@ -15,7 +15,7 @@
             <div class="span12 search">
                 <form method="GET">
                     <?php 
-                        parent::showHiddenInput();
+                        $this->showHiddenInput();
                     ?>
                     <input type="text" class="span11" placeholder="Some text for search..." name="search"/>
                     <button class="btn span1" type="submit">Search</button>
@@ -41,7 +41,7 @@
                         <div class="span9">
                             <?php
                                 if ( isset($_GET['search']) )
-                                echo '<p class="result">'.$total.' result for "' . $_GET['search'] . '"</p>';
+                                echo '<p class="result">'.$this->total.' result for "' . $_GET['search'] . '"</p>';
                             ?>
                         </div>
                     </div>
@@ -61,8 +61,8 @@
                             <tbody>
                             <?php
                                 $no = 0;
-                                if ( !empty($users) )
-                                foreach ($users as $key => $value) {
+                                if ( !empty($this->data) )
+                                foreach ($this->data as $key => $value) {
                                     $no += 1;
                                 ?>
                                     <tr>
@@ -94,17 +94,7 @@
                         </div><!-- /bulk-action-->
                         <?php
                             if ( !isset($_GET['search']) ) {
-                            ?>
-                                <div class="dataTables_paginate">
-                                    <a class="first paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=user&page=1'; ?>">First</a>
-                                    <a class="previous paginate_button <?php echo parent::checkPagiFirst($_GET['page']); ?>" href="<?php echo BASE_URL . '?p=admin&c=user&page=' . $previous; ?>">Previous</a>
-                                    <?php
-                                        parent::pagiHandling('user', $totalPages);
-                                    ?>
-                                    <a class="next paginate_button <?php echo parent::checkPagiLast($_GET['page'], $totalPages); ?>" href="<?php echo BASE_URL . '?p=admin&c=user&page=' . $next; ?>">Next</a>
-                                    <a class="last paginate_button <?php echo parent::checkPagiLast($_GET['page'], $totalPages); ?>" href="<?php echo BASE_URL . '?p=admin&c=user&page=' . $totalPages; ?>">Last</a>
-                                </div>
-                            <?php
+                                $this->pagiHandling();
                             }
                         ?>
                         <div class="clear"></div>

@@ -7,29 +7,7 @@ class UserController extends Base_Controller {
 	}
 
 	public function index () {
-		$data = User::getAllUser();
-		$users = $data['users'];
-		$totalPages = $data['totalPages'];
-		$previous = $_GET['page'] - 1;
-		$next = $_GET['page'] + 1;
-
-		if ( isset($_POST['active']) ) {
-			parent::active($_GET['c']);
-		} else if ( isset($_POST['deactive']) ) {
-			parent::deactive($_GET['c']);
-		}
-		
-		// Search
-		if ( isset($_GET['search']) ) {
-			$result = parent::search_base();
-			$total = $result['total'];
-			if ( isset($result['data']) )
-				$users = $result['data'];
-			else
-				$users = '';
-		}
-		
-		include PATH_ADMIN . '/views/Users/index.php';
+		parent::index_base();
 	}
 
 	public function add () {

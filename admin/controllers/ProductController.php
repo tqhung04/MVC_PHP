@@ -8,30 +8,7 @@ class ProductController extends Base_Controller {
 	}
 
 	public function index () {
-
-		$data = Product::getAllProducts();
-		$products = $data['products'];
-		$totalPages = $data['totalPages'];
-		$previous = $_GET['page'] - 1;
-		$next = $_GET['page'] + 1;
-
-		if ( isset($_POST['active']) ) {
-			parent::active($_GET['c']);
-		} else if ( isset($_POST['deactive']) ) {
-			parent::deactive($_GET['c']);
-		}
-
-		// Search
-		if ( isset($_GET['search']) ) {
-			$result = parent::search_base();
-			$total = $result['total'];
-			if ( isset($result['data']) )
-				$products = $result['data'];
-			else
-				$products = '';
-		}
-
-		include PATH_ADMIN . '/views/Products/index.php';
+		parent::index_base();
 	}
 
 	public function edit () {

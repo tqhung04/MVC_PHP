@@ -28,14 +28,14 @@ class User extends Base_Model {
 		}
 	}
 
-	function getAllUser () {
+	function getAllData () {
 		$pagination = new Pagination;
 		$pagination->tblName = 'users';
 		$pagination->current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 		$users = $pagination->listPages('users');
 		$totalPages = $pagination->totalPages();
 		return array(
-			'users' => $users,
+			'data' => $users,
 			'totalPages' => $totalPages
 		);
 	}

@@ -4,14 +4,14 @@ class Product extends Base_Model {
 
 	}
 
-	public function getAllProducts () {
+	public function getAllData () {
 		$pagination = new Pagination;
 		$pagination->tblName = 'products';
 		$pagination->current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 		$products = $pagination->listPages('products');
 		$totalPages = $pagination->totalPages();
 		return array(
-			'products' => $products,
+			'data' => $products,
 			'totalPages' => $totalPages
 		);
 	}

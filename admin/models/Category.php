@@ -4,14 +4,14 @@ class Category extends Base_Model {
 
 	}
 
-	public function getAllCategories () {
+	public function getAllData () {
 		$pagination = new Pagination;
 		$pagination->tblName = 'categories';
 		$pagination->current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 		$categories = $pagination->listPages('categories');
 		$totalPages = $pagination->totalPages();
 		return array(
-			'categories' => $categories,
+			'data' => $categories,
 			'totalPages' => $totalPages
 		);
 	}
