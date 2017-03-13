@@ -1,12 +1,10 @@
 <div class="menu">
-
     <div class="breadLine">
         <div class="arrow"></div>
         <div class="adminControl active">
             Hi, <?php echo $_SESSION['username']; ?>
         </div>
     </div>
-
     <div class="admin">
         <div class="image">
             <img width="50px" height="50px" alt="<?php echo $_SESSION['username']; ?>" src="<?php echo BASE_URL . $_COOKIE['avatar']; ?>" class="img-polaroid"/>
@@ -16,7 +14,6 @@
             <li><span class="icon-share-alt"></span> <a href="<?php echo BASE_URL . '?p=admin&c=login&a=logout' ?>">Logout</a></li>
         </ul>
     </div>
-
     <ul class="navigation">
         <li>
             <a href="<?php echo BASE_URL . '?p=admin&c=category' ?>">
@@ -34,5 +31,4 @@
             </a>
         </li>
     </ul>
-
 </div>

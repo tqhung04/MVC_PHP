@@ -1,35 +1,12 @@
 <?php
 class Category extends Base_Model {
 	function __construct () {
-
 	}
-
-	public function getAllData () {
-		$pagination = new Pagination;
-		$pagination->tblName = 'categories';
-		$pagination->current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-		$categories = $pagination->listPages('categories');
-		$totalPages = $pagination->totalPages();
-		return array(
-			'data' => $categories,
-			'totalPages' => $totalPages
-		);
-	}
-
 	public function getAllCategoriesNoPagi () {
 		$stmt = parent::connect()->prepare('SELECT name FROM categories');
 		$stmt->execute();
 		return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
-
-	public function getCategory ($id) {
-		$stmt = parent::connect()->prepare('SELECT * FROM categories WHERE id = :id');
-		$stmt->execute(array(
-			':id' => $id
-		));
-		return $data = $stmt->fetch(PDO::FETCH_ASSOC);
-	}
-
 	public function getIdByName ($categoryName) {
 		$stmt = parent::connect()->prepare('SELECT id FROM categories WHERE name = :categoryName');
 		$stmt->execute(array(
@@ -42,7 +19,6 @@ class Category extends Base_Model {
 			return false;
 		}
 	}
-
 	public function getNameById ($id) {
 		$stmt = parent::connect()->prepare('SELECT name FROM categories WHERE id = :categoryId');
 		$stmt->execute(array(
@@ -56,7 +32,6 @@ class Category extends Base_Model {
 			return false;
 		}
 	}
-
 	public function addCategory ($name, $active) {
 		try {
 			$stmt = parent::connect()->prepare('
@@ -74,7 +49,6 @@ class Category extends Base_Model {
 			return false;
 		}
 	}
-
 	public function editCategory ($id, $name, $active) {
 		try {
 			$stmt = parent::connect()->prepare('

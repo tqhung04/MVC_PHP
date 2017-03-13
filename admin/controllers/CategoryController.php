@@ -5,13 +5,10 @@ class CategoryController extends Base_Controller {
 	function __construct () {
 		parent::__construct();
 	}
-
 	public function index () {
 		parent::index_base();
 	}
-
 	public function add () {
-		
 		if ( isset($_POST['create']) ) {
 			if ( !empty($_POST['categoryName']) ) {
 				$_SESSION['errMsg'] = '';
@@ -32,13 +29,12 @@ class CategoryController extends Base_Controller {
 				$_SESSION['errMsg'] = 'Name is required.';
 			}
 		}
-		include PATH_ADMIN . '/views/Categories/add.php';
+		include PATH_ADMIN . '/views/Category/add.php';
 	}
-
 	public function edit () {
 		if ( isset($_GET['id']) ) {
 			$id = $_GET['id'];
-			$data = Category::getCategory($id);
+			$data = Category::getOneRow($id, 'categories');
 			if ( !empty($_POST['categoryName']) ) {
 				$categoryName = $_POST['categoryName'];
 				$categoryActive = $_POST['categoryActive'];
@@ -56,6 +52,6 @@ class CategoryController extends Base_Controller {
 				}
 			}
 		}
-		include PATH_ADMIN . '/views/Categories/edit.php';
+		include PATH_ADMIN . '/views/Category/edit.php';
 	}
 }

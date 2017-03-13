@@ -1,21 +1,17 @@
 <?php
 include_once PATH_ADMIN . '/models/Product.php';
 include_once PATH_ADMIN . '/models/Category.php';
-
 class ProductController extends Base_Controller {
 	public function __construct () {
 		parent::__construct();
 	}
-
 	public function index () {
 		parent::index_base();
 	}
-
 	public function edit () {
-		
 		if ( isset($_GET['id']) ) {
 			$id = $_GET['id'];
-			$data = Product::getProduct($id);
+			$data = Product::getOneRow($id, 'products');
 			$categories = Category::getAllCategoriesNoPagi();
 			$category = Category::getNameById($data['categories_id']);
 			if ( isset($_POST['update']) ) {
@@ -65,9 +61,8 @@ class ProductController extends Base_Controller {
 			}
 		}
 
-		include PATH_ADMIN . '/views/Products/edit.php';
+		include PATH_ADMIN . '/views/Product/edit.php';
 	}
-
 	public function add () {
 		$data = Category::getAllCategoriesNoPagi();
 		if ( isset($_POST['create']) ) {
@@ -117,7 +112,6 @@ class ProductController extends Base_Controller {
 			}
 		}
 
-		include PATH_ADMIN . '/views/Products/add.php';
+		include PATH_ADMIN . '/views/Product/add.php';
 	}
-
 }

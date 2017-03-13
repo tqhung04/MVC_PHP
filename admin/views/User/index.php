@@ -1,16 +1,10 @@
 <div class="content">
-
-
     <div class="breadLine">
-
         <ul class="breadcrumb">
             <li><a href="<?php echo BASE_URL . '?p=admin&c=user'; ?>">List Users</a></li>
         </ul>
-
     </div>
-
     <div class="workplace">
-
         <div class="row-fluid">
             <div class="span12 search">
                 <form method="GET">
@@ -23,9 +17,7 @@
             </div>
         </div>
         <!-- /row-fluid-->
-
         <div class="row-fluid">
-
             <div class="span12">
                 <div class="head">
                     <div class="isw-grid"></div>
@@ -101,10 +93,7 @@
                     </form>
                 </div>
             </div>
-
         </div>
         <div class="dr"><span></span></div>
-
     </div>
-
 </div>

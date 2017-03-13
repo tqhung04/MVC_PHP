@@ -3,20 +3,16 @@ include_once PATH_ADMIN . '/models/User.php';
 
 class LoginController extends Base_Controller {
 	function __construct () {
-
 	}
-
 	function index () {
 		include PATH_ADMIN . '/views/Auth/login.php';
 		$this->login();
 	}
-
 	function login () {
 		if ( isset($_POST['btnLogin']) ) {
 			if ( !empty($_POST['inputUsername']) && !empty($_POST['inputPassword']) ) {
 				$username = $_POST['inputUsername'];
 				$password = $_POST['inputPassword'];
-
 				$check = User::login($username, $password);
 				if ( $check['status'] == 0) {
 					$_SESSION['errMsg'] = '';
@@ -37,7 +33,6 @@ class LoginController extends Base_Controller {
 			}
 		}
 	}
-
 	function logout () {
 		setcookie('username', '', time() - (86400 * 30) );
 		setcookie('password', '', time() - (86400 * 30) );
@@ -46,6 +41,4 @@ class LoginController extends Base_Controller {
 		unset($_SESSION["username"]);
 		header( 'Location: ' . BASE_URL . '?p=admin');
 	}
-
-	
 }

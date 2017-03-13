@@ -1,7 +1,5 @@
 <?php
-if( !isset($_SESSION) ) { 
-    session_start(); 
-} 
+session_start();
 
 function Load () {
 	include_once PATH_SYSTEM . '/config/dbconnect.php';
@@ -18,6 +16,7 @@ function Load () {
 		} else {
 			include PATH_ADMIN . '/views/zTemplate/header.php';
 			include PATH_ADMIN . '/views/zTemplate/menu_left.php';
+			if ( empty($_GET['c']) )  $_GET['c'] = 'product';
 			$controller = empty( $_GET['c'] ) ? $admin_config['default_controller'] : $_GET['c'];
 		}
 

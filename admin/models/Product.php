@@ -1,30 +1,7 @@
 <?php
 class Product extends Base_Model {
 	function __construct () {
-
 	}
-
-	public function getAllData () {
-		$pagination = new Pagination;
-		$pagination->tblName = 'products';
-		$pagination->current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-		$products = $pagination->listPages('products');
-		$totalPages = $pagination->totalPages();
-		return array(
-			'data' => $products,
-			'totalPages' => $totalPages
-		);
-	}
-
-	public function getProduct ($id) {
-		$stmt = parent::connect()->prepare('SELECT * FROM products WHERE id = :id');
-		$stmt->execute(array(
-			':id' => $id
-		));
-		return $data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-	}
-
 	public function addProduct ($name, $price, $description, $image, $categories_id, $productActive) {
 		try {
 			$stmt = parent::connect()->prepare('
@@ -46,7 +23,6 @@ class Product extends Base_Model {
 			return false;
 		}
 	}
-
 	public function updateProduct ($id, $name, $price, $description, $image, $categories_id, $productActive) {
 		try {
 			$stmt = parent::connect()->prepare('

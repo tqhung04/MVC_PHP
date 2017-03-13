@@ -1,15 +1,12 @@
 <?php
 include_once PATH_ADMIN . '/models/User.php';
-
 class UserController extends Base_Controller {
 	function __construct () {
 		parent::__construct();
 	}
-
 	public function index () {
 		parent::index_base();
 	}
-
 	public function add () {
 		if ( isset($_POST['create']) ) {
 			if ( !empty($_POST['userName']) && !empty($_POST['userEmail']) && !empty($_POST['userPwd']) ) {
@@ -54,13 +51,12 @@ class UserController extends Base_Controller {
 				$_SESSION['errMsg'] = "Username, Email and Password are required.";
 			}
 		}
-		include PATH_ADMIN . '/views/Users/add.php';
+		include PATH_ADMIN . '/views/User/add.php';
 	}
-
 	public function edit () {
 		if ( isset($_GET['id']) ) {
 			$id = $_GET['id'];
-			$data = User::getUser($id);	
+			$data = User::getOneRow($id, 'users');
 			if ( isset($_POST['update']) ) {
 				if ( !empty($_POST['userName']) && !empty($_POST['userEmail']) && !empty($_POST['userPwd']) ) {
 					$userName = $_POST['userName'];
@@ -89,9 +85,10 @@ class UserController extends Base_Controller {
 							} else {
 								$userImg = $data['image'];
 							}
-							echo $userName, $userEmail, $userPwd, $userImg, $userActive;
+							// echo $userName, $userEmail, $userPwd, $userImg, $userActive;
 							$update = User::updateUser($id, $userName, $userEmail, $userPwd, $userImg, $userActive);
 							if ( $update == 1 ) {
+								$_SESSION['username'] = $userName;
 								$_SESSION['avatar'] = $userImg;
 								header( 'Location: ' . BASE_URL . '?p=admin&c=user');
 							} else {
@@ -104,6 +101,6 @@ class UserController extends Base_Controller {
 				}
 			}
 		}
-		include PATH_ADMIN . '/views/Users/edit.php';
+		include PATH_ADMIN . '/views/User/edit.php';
 	}
 }

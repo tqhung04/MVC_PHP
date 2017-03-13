@@ -1,9 +1,7 @@
 <?php
 class User extends Base_Model {
 	function __construct () {
-
 	}
-
 	function login ($username, $password) {
 		$stmt = parent::connect()->prepare('SELECT * FROM users WHERE username = :username and password = :password');
 		$stmt->execute(array(
@@ -27,19 +25,6 @@ class User extends Base_Model {
 			);
 		}
 	}
-
-	function getAllData () {
-		$pagination = new Pagination;
-		$pagination->tblName = 'users';
-		$pagination->current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-		$users = $pagination->listPages('users');
-		$totalPages = $pagination->totalPages();
-		return array(
-			'data' => $users,
-			'totalPages' => $totalPages
-		);
-	}
-
 	function addUser ($userName, $userEmail, $userPwd, $userImg, $userActive) {
 		try {
 			$stmt = parent::connect()->prepare('
@@ -60,12 +45,12 @@ class User extends Base_Model {
 			return false;
 		}
 	}
-
 	function updateUser ($id, $userName, $userEmail, $userPwd, $userImg, $userActive) {
 		try {
+			echo $userName, $userEmail, $userPwd, $userImg, $userActive;
 			$stmt = parent::connect()->prepare('
 				UPDATE users 
-				SET username=:username, 
+				SET username=:username,
 					email=:email, 
 					password=:password, 
 					avatar=:avatar, 
@@ -84,13 +69,5 @@ class User extends Base_Model {
 			echo "<br>" . $e->getMessage();
 			return false;
 		}
-	}
-
-	function getUser ($id) {
-		$stmt = parent::connect()->prepare('SELECT * FROM users WHERE id = :id');
-		$stmt->execute(array(
-			':id' => $id
-		));
-		return $data = $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 }

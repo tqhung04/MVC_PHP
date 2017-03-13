@@ -1,10 +1,31 @@
 <?php
 class Base_Model extends dbconnect {
-
+	protected $c;
 	public function __construct () {
-
+		$this->c = $_GET['c'];
 	}
-
+	public function getAllData () {
+		$pagination = new Pagination;
+		if ( $_GET['c'] == 'category' ) {
+			$tblName = 'categories';
+		} else {
+			$tblName = $_GET['c'] . 's';
+		}
+			$pagination->tblName = $tblName;
+		$pagination->current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+		$data = $pagination->listPages($tblName);
+		$totalPages = $pagination->totalPages();
+		return array(
+			'data' => $data,
+			'totalPages' => $totalPages
+		);
+	}
+	public function getOneRow ($id, $table) {
+		$sql = 'SELECT * FROM ' . $table . ' WHERE id=' . $id;
+		$stmt = parent::connect()->prepare($sql);
+		$stmt->execute();
+		return $data = $stmt->fetch(PDO::FETCH_ASSOC);
+	}
 	public function checkExist ($nameTbl, $nameField, $value) {
 		$sql = 'SELECT * FROM ' . $nameTbl . ' WHERE ' . $nameField . ' = "' . $value . '"'; ;
 		$stmt = parent::connect()->prepare($sql);
@@ -16,7 +37,6 @@ class Base_Model extends dbconnect {
 			return false;
 		}
 	}
-
 	public function deactive ($id, $name) {
 		try {
 			if ($name == 'category') $name = 'categorie';
@@ -29,9 +49,7 @@ class Base_Model extends dbconnect {
 			echo "<br>" . $e->getMessage();
 			return false;
 		}
-
 	}
-
 	public function active ($id, $name) {
 		try {
 			if ($name == 'category') $name = 'categorie';
@@ -45,7 +63,6 @@ class Base_Model extends dbconnect {
 			return false;
 		}
 	}
-
 	public function search ($model, $content) {
 		try {
 			if ($model == 'category') {
