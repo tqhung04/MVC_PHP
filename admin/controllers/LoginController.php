@@ -41,6 +41,8 @@ class LoginController extends Base_Controller {
 	function logout () {
 		setcookie('username', '', time() - (86400 * 30) );
 		setcookie('password', '', time() - (86400 * 30) );
+		setcookie('id', $check['data']['id'], time() - (86400 * 30), "/");
+		setcookie('avatar', $check['data']['avatar'], time() - (86400 * 30), "/");
 		unset($_SESSION["username"]);
 		header( 'Location: ' . BASE_URL . '?p=admin');
 	}
