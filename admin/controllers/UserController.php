@@ -88,8 +88,9 @@ class UserController extends Base_Controller {
 							// echo $userName, $userEmail, $userPwd, $userImg, $userActive;
 							$update = User::updateUser($id, $userName, $userEmail, $userPwd, $userImg, $userActive);
 							if ( $update == 1 ) {
-								$_SESSION['username'] = $userName;
-								$_SESSION['avatar'] = $userImg;
+								if ( $_SESSION['username'] == $userName ) {
+									$_SESSION['avatar'] = $userImg;
+								}
 								header( 'Location: ' . BASE_URL . '?p=admin&c=user');
 							} else {
 								$_SESSION['errMsg'] = 'Can not add new user.';

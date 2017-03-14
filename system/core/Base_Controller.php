@@ -17,7 +17,7 @@ class Base_Controller {
 	}
     public function showHiddenInput () {
         foreach ($_GET as $key => $value) {
-            if ( $key != 'search' ) {
+            if ( $key != 'search' && $key != 'search_type') {
                 echo("<input type='hidden' name='$key' value='$value'/>");
             }
         }
@@ -161,7 +161,18 @@ class Base_Controller {
         if ( isset($_GET['search']) ) {
             $model = ucfirst(strtolower($this->c));
             $content = $_GET['search'];
-            $data = $model::search($this->c, $content);
+            if ( isset($_GET['search_type']) ) {
+                $type = $_GET['search_type'];
+                if ( $type == 'search_price') {
+                    $data = $model::searchProductByPrice($this->c, $content);
+                } else if ( $type == 'search_category' ) {
+                    $data = $model::searchProductByCategory($this->c, $content);
+                } else if ( $type == 'search_name' ) {
+                    $data = $model::search($this->c, $content);
+                }
+            } else {
+                $data = $model::search($this->c, $content);
+            }
             return $data;
         } else {
             // 
@@ -172,21 +183,18 @@ class Base_Controller {
         $datas = $model::getAllData();
         $this->data = $datas['data'];
         $this->totalPages = $datas['totalPages'];
-
         // Pagination
         if ( $this->i > $this->totalPages ) {
             $_GET['page'] = $this->totalPages;
         } else if ( $this->i < 1 ) {
             $_GET['page'] = 1;
         }
-
         // Active - Deactive
         if ( isset($_POST['active']) ) {
             $this->active();
         } else if ( isset($_POST['deactive']) ) {
             $this->deactive();
         }
-
         // Search
         if ( isset($_GET['search']) ) {
             $result = $this->search_base();
@@ -198,7 +206,6 @@ class Base_Controller {
             else
                 $this->data = '';
         }
-
         // View
         include PATH_ADMIN . '/views/' . $model . '/index.php';
     }

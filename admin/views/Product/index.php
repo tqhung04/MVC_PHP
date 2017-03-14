@@ -11,6 +11,11 @@
                     <?php
                         $this->showHiddenInput();
                     ?>
+                    <select name="search_type">
+                        <option value="search_name">Name</option>
+                        <option value="search_price">Price</option>
+                        <option value="search_category">Category</option>
+                    </select>
                     <input type="text" class="span11" placeholder="Some text for search..." name="search"/>
                     <button class="btn span1" type="submit">Search</button>
                 </form>

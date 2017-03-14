@@ -92,5 +92,49 @@ class Base_Model extends dbconnect {
 			return false;
 		}
 	}
+	public function searchProductByPrice ($model, $content) {
+		try {
+			$sql = 'SELECT * FROM products WHERE price =' . $content;
+			$stmt = parent::connect()->prepare($sql);
+			$stmt->execute();
+
+			if ( $stmt->rowCount() > 0 ) {
+				return array(
+					'data' => $stmt->fetchAll(PDO::FETCH_ASSOC),
+					'total' => $stmt->rowCount(),
+				);
+			}
+			else {
+				return array(
+					'total' => $stmt->rowCount(),
+				);
+			}
+		} catch (Exception $e) {
+			echo "<br>" . $e->getMessage();
+			return false;
+		}
+	}
+	public function searchProductByCategory ($mode, $content) {
+		try {
+			$sql = 'SELECT products.id, products.name, products.price, products.created_at, products.updated_at, products.active FROM products INNER JOIN categories ON products.categories_id = categories.id AND categories.name LIKE "%' . $content . '%"';
+			$stmt = parent::connect()->prepare($sql);
+			$stmt->execute();
+
+			if ( $stmt->rowCount() > 0 ) {
+				return array(
+					'data' => $stmt->fetchAll(PDO::FETCH_ASSOC),
+					'total' => $stmt->rowCount(),
+				);
+			}
+			else {
+				return array(
+					'total' => $stmt->rowCount(),
+				);
+			}
+		} catch (Exception $e) {
+			echo "<br>" . $e->getMessage();
+			return false;
+		}
+	}
 
 }
