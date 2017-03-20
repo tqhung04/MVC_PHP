@@ -2,13 +2,11 @@
 include_once PATH_ADMIN . '/models/User.php';
 
 class LoginController extends Base_Controller {
+	protected $errMsg;
+
 	function __construct () {
 	}
 	function index () {
-		include PATH_ADMIN . '/views/Auth/login.php';
-		$this->login();
-	}
-	function login () {
 		if ( isset($_POST['btnLogin']) ) {
 			if ( !empty($_POST['inputUsername']) && !empty($_POST['inputPassword']) ) {
 				$username = $_POST['inputUsername'];
@@ -25,15 +23,17 @@ class LoginController extends Base_Controller {
 					$_SESSION['username'] = $username;
 					header( 'Location: ' . BASE_URL . '?p=admin');
 				} else {
-					$_SESSION['errMsg'] = "User & password doesn't match.";
+					$this->errMsg = "User & password doesn't match.";
 				}
 			}
 			else {
 				//
 			}
 		}
+		include PATH_ADMIN . '/views/Auth/login.php';
 	}
-	function logout () {
+
+	public function logout () {
 		setcookie('username', '', time() - (86400 * 30) );
 		setcookie('password', '', time() - (86400 * 30) );
 		setcookie('id', $check['data']['id'], time() - (86400 * 30), "/");

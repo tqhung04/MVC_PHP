@@ -16,7 +16,7 @@
                         <option value="search_price">Price</option>
                         <option value="search_category">Category</option>
                     </select>
-                    <input type="text" class="span11" placeholder="Some text for search..." name="search"/>
+                    <input type="text" class="span11" placeholder="Some text for search..." name="search" required/>
                     <button class="btn span1" type="submit">Search</button>
                 </form>
             </div>
@@ -33,7 +33,7 @@
                 <div class="block-fluid table-sorting">
                     <div class="row-fluid">
                         <div class="span3">
-                            <a href="<?php echo BASE_URL . '?p=admin&c=product&a=add'; ?>" class="btn btn-add">Add Product</a>
+                            <a href="<?php echo BASE_URL . '?p=admin&c=product&a=create'; ?>" class="btn btn-add">Add Product</a>
                         </div>
                         <div class="span9">
                             <?php
@@ -81,7 +81,7 @@
                                             }
                                         ?>
                                     </td>
-                                    <td><a href="<?php echo BASE_URL . '?p=admin&c=product&a=edit&id=' . $value['id']; ?>" class="btn btn-info">Edit</a></td>
+                                    <td><a href="<?php echo BASE_URL . '?p=admin&c=product&a=update&id=' . $value['id']; ?>" class="btn btn-info">Edit</a></td>
                                 </tr>
                             <?php
                                 }

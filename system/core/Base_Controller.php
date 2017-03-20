@@ -8,13 +8,13 @@ class Base_Controller {
     protected $totalPages;
     protected $previous;
     protected $next;
-	function __construct () {
+    function __construct () {
         if ( !isset($_GET['page']) ) {
             $_GET['page'] = 1;
         }
         $this->i = $_GET['page'];
         $this->c = $_GET['c'];
-	}
+    }
     public function showHiddenInput () {
         foreach ($_GET as $key => $value) {
             if ( $key != 'search' && $key != 'search_type') {
@@ -22,17 +22,17 @@ class Base_Controller {
             }
         }
     }
-	public function checkPagiFirst () {
+    public function checkPagiFirst () {
 		if ( $_GET['page'] == 1 ) {
 			return 'paginate_button_disabled';
 		}
-	}
-	public function checkPagiLast () {
-		if ( $_GET['page'] == $this->totalPages ) {
-			return 'paginate_button_disabled';
-		}
-	}
-	public function pagiHandling () {
+    }
+    public function checkPagiLast () {
+        if ( $_GET['page'] == $this->totalPages ) {
+            return 'paginate_button_disabled';
+        }
+    }
+    public function pagiHandling () {
         $page = $_GET['page'];
         $first = BASE_URL . '?p=admin&c=' . $this-> c . '&page=1';
         $previous = BASE_URL . '?p=admin&c=' . $this-> c . '&page=' . ($_GET['page'] - 1);
@@ -42,7 +42,7 @@ class Base_Controller {
             <div class="dataTables_paginate">
                 <a class="first paginate_button ' . $this->checkPagiFirst() . '" href="' . $first . '">First</a>
                 <a class="previous paginate_button ' . $this->checkPagiFirst() . '" href="' . $previous . '">Previous</a>';
-		if ( $this->totalPages <= 5 ) {
+        if ( $this->totalPages <= 5 ) {
             for ( $i = 1; $i <= $this->totalPages; $i ++ ) {
                 echo '<span>';
                 if ( $i == $page ) {
@@ -158,7 +158,7 @@ class Base_Controller {
         }
     }
     public function search_base () {
-        if ( isset($_GET['search']) ) {
+        if ( !empty($_GET['search']) ) {
             $model = ucfirst(strtolower($this->c));
             $content = $_GET['search'];
             if ( isset($_GET['search_type']) ) {
@@ -178,7 +178,7 @@ class Base_Controller {
             // 
         }   
     }
-    public function index_base () {
+    public function index () {
         $model = ucfirst(strtolower($_GET['c']));
         $datas = $model::getAllData();
         $this->data = $datas['data'];
@@ -199,7 +199,6 @@ class Base_Controller {
         if ( isset($_GET['search']) ) {
             $result = $this->search_base();
             $this->total = $result['total'];
-            echo $this->total;
             if ( isset($result['data']) ) {
                 $this->data = $result['data'];
             }
@@ -208,5 +207,12 @@ class Base_Controller {
         }
         // View
         include PATH_ADMIN . '/views/' . $model . '/index.php';
+    }
+    public function checkValidate ($check) {
+        echo 'AAAAAAAAAAAA';
+        if ( $check == 1 ) {
+            echo 'BBBBBBBBBBBB';
+            header( 'Location: ' . BASE_URL . '?p=admin&c=' . $_GET['c']);
+        }
     }
 }

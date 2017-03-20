@@ -23,11 +23,11 @@
         <form class="form-horizontal" action="#" method="POST">            
             <div class="control-group">
                 <label for="inputUsername">Username</label>                
-                <input type="text" id="inputUsername" name="inputUsername" />
+                <input type="text" id="inputUsername" name="inputUsername" required />
             </div>
             <div class="control-group">
                 <label for="inputPassword">Password</label>                
-                <input type="password" id="inputPassword" name="inputPassword" />
+                <input type="password" id="inputPassword" name="inputPassword" required />
             </div>
             <div class="control-group" style="margin-bottom: 5px;">
                 <label class="checkbox">
@@ -41,8 +41,8 @@
 
             <p class="error">
                 <?php
-                    if ( !empty($_SESSION['errMsg']) ) {
-                        echo $_SESSION['errMsg'];
+                    if ( isset($this->errMsg) ) {
+                        echo $this->errMsg;
                     }
                 ?>    
             </p>  

@@ -43,10 +43,8 @@ function Load () {
 		if ( !method_exists($controllerObj, $action) ) {
 			die ( 'Action ' . $action . ' no exists.' );
 		}
-
 		// Run App
 		$controllerObj -> {$action}();
-
 	} else if ( isset($_GET['p']) && $_GET['p'] != 'admin' ) {
 		echo '404 ERROR';
 

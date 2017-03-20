@@ -22,25 +22,25 @@ class Category extends Base_Model {
 	public function getNameById ($id) {
 		$stmt = parent::connect()->prepare('SELECT name FROM categories WHERE id = :categoryId');
 		$stmt->execute(array(
-			':categoryId' => (int) $id
+			':categoryId' => (int) $id,
 		));
 		$data = $stmt->fetch(PDO::FETCH_ASSOC);
-		
+
 		if ($stmt->rowCount() > 0) {
 			return $data['name'];
 		} else {
 			return false;
 		}
 	}
-	public function addCategory ($name, $active) {
+	public function addCategory ($data) {
 		try {
 			$stmt = parent::connect()->prepare('
 				INSERT INTO 
 				categories (name, active) 
 				VALUES (:name, :active)');
 			$stmt->execute(array(
-				':name' => $name,
-				':active' => $active
+				':name' => $data['0'],
+				':active' => $data['1'],
 			));
 
 			return true;
@@ -49,7 +49,7 @@ class Category extends Base_Model {
 			return false;
 		}
 	}
-	public function editCategory ($id, $name, $active) {
+	public function updateCategory ($data) {
 		try {
 			$stmt = parent::connect()->prepare('
 				UPDATE categories 
@@ -58,9 +58,9 @@ class Category extends Base_Model {
 				WHERE id=:id');
 				
 			$stmt->execute(array(
-				':name' => $name,
-				':active' => $active,
-				':id' => $id,
+				':name' => $data['0'],
+				':active' => $data['1'],
+				':id' => $_GET['id'],
 			));
 			return true;
 		} catch (Exception $e) {

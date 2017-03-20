@@ -25,18 +25,18 @@ class User extends Base_Model {
 			);
 		}
 	}
-	function addUser ($userName, $userEmail, $userPwd, $userImg, $userActive) {
+	function addUser ($data) {
 		try {
 			$stmt = parent::connect()->prepare('
 				INSERT INTO 
 				users (username, email, password, avatar, active) 
 				VALUES (:username, :email, :password, :avatar, :active)');
 			$stmt->execute(array(
-				':username' => $userName,
-				':email' => $userEmail,
-				':password' => $userImg,
-				':avatar' => $userPwd,
-				':active' => $userActive
+				':username' => $data['0'],
+				':email' => $data['1'],
+				':password' => $data['2'],
+				':avatar' => $data['3'],
+				':active' => $data['4'],
 			));
 
 			return true;
@@ -45,9 +45,8 @@ class User extends Base_Model {
 			return false;
 		}
 	}
-	function updateUser ($id, $userName, $userEmail, $userPwd, $userImg, $userActive) {
+	function updateUser ($data) {
 		try {
-			echo $userName, $userEmail, $userPwd, $userImg, $userActive;
 			$stmt = parent::connect()->prepare('
 				UPDATE users 
 				SET username=:username,
@@ -57,12 +56,12 @@ class User extends Base_Model {
 					active=:active
 				WHERE id=:id');
 			$stmt->execute(array(
-				':username' => $userName,
-				':email' => $userEmail,
-				':password' => $userPwd,
-				':avatar' => $userImg,
-				':active' => $userActive,
-				':id' => $id,
+				':username' => $data['0'],
+				':email' => $data['1'],
+				':password' => $data['2'],
+				':avatar' => $data['3'],
+				':active' => $data['4'],
+				':id' => $_GET['id'],
 			));
 			return true;
 		} catch (Exception $e) {

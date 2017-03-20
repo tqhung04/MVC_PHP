@@ -2,19 +2,19 @@
 class Product extends Base_Model {
 	function __construct () {
 	}
-	public function addProduct ($name, $price, $description, $image, $categories_id, $productActive) {
+	public function addProduct ($data) {
 		try {
 			$stmt = parent::connect()->prepare('
 				INSERT INTO 
 				products (name, price, description, image, categories_id, active) 
 				VALUES (:name, :price, :description, :image, :categories_id, :productActive)');
 			$stmt->execute(array(
-				':name' => $name,
-				':price' => $price,
-				':description' => $description,
-				':image' => $image,
-				':categories_id' => $categories_id,
-				':productActive' => $productActive
+				':name' => $data[0],
+				':price' => $data[1],
+				':description' => $data[2],
+				':image' => $data[3],
+				':categories_id' => $data[4],
+				':productActive' => $data[5],
 			));
 
 			return true;
@@ -23,7 +23,7 @@ class Product extends Base_Model {
 			return false;
 		}
 	}
-	public function updateProduct ($id, $name, $price, $description, $image, $categories_id, $productActive) {
+	public function updateProduct ($data) {
 		try {
 			$stmt = parent::connect()->prepare('
 				UPDATE products 
@@ -36,13 +36,13 @@ class Product extends Base_Model {
 				WHERE id=:id');
 				
 			$stmt->execute(array(
-				':name' => $name,
-				':price' => $price,
-				':description' => $description,
-				':image' => $image,
-				':categories_id' => $categories_id,
-				':id' => $id,
-				':productActive' => $productActive
+				':name' => $data[0],
+				':price' => $data[1],
+				':description' => $data[2],
+				':image' => $data[3],
+				':categories_id' => $data[4],
+				':id' => $_GET['id'],
+				':productActive' => $data[5],
 			));
 
 			return true;

@@ -11,7 +11,7 @@
                     <?php 
                         $this->showHiddenInput();
                     ?>
-                    <input type="text" class="span11" placeholder="Some text for search..." name="search"/>
+                    <input type="text" class="span11" placeholder="Some text for search..." name="search" required />
                     <button class="btn span1" type="submit">Search</button>
                 </form>
             </div>
@@ -27,7 +27,7 @@
                 <div class="block-fluid table-sorting">
                     <div class="row-fluid">
                         <div class="span3">
-                            <a href="<?php echo BASE_URL . '?p=admin&c=category&a=add'; ?>" class="btn btn-add">Add Category</a>
+                            <a href="<?php echo BASE_URL . '?p=admin&c=category&a=create'; ?>" class="btn btn-add">Add Category</a>
                         </div>
                         <div class="span9">
                             <?php
@@ -72,7 +72,7 @@
                                         <td><?php echo $value['created_at'] ?></td>
                                         <td><?php echo $value['updated_at'] ?></td>
                                         
-                                        <td><a href="<?php echo BASE_URL . '?p=admin&c=category&a=edit&id=' . $value['id']; ?>" class="btn btn-info">Edit</a></td>
+                                        <td><a href="<?php echo BASE_URL . '?p=admin&c=category&a=update&id=' . $value['id']; ?>" class="btn btn-info">Edit</a></td>
                                     </tr>
                                 <?php
                                     }
